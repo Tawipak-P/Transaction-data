@@ -5,15 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2C2P.AssignmentTest.Infrastructor.Entities
+namespace Transaction.Infrastructor.Entities
 {
     public class TransactionData
     {
         [Key]
-        [MaxLength(50, ErrorMessage = "Transaction Id shoud not exceed 50 characters.")]
+        [MaxLength(50)]
         public string TransactionId { get; set; }
 
-        [MaxLength(30, ErrorMessage = "Account No. shoud not exceed 30 characters.")]
+        [MaxLength(30)]
         public string AccountNo { get; set; }
         public decimal Amount { get; set; }
         public string CurrencyCode { get; set; }

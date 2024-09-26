@@ -1,5 +1,8 @@
-using _2C2P.AssignmentTest.Infrastructor;
+using Transaction.Infrastructor;
 using Microsoft.EntityFrameworkCore;
+using Transaction.Infrastructor.Repositories.Interfaces;
+using Transaction.Infrastructor.Repositories;
+using Transaction.Core.MappingConfig;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,10 @@ builder.Services.AddDbContext<TransactionDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TransactionDb"));
 });
 
+
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 
 

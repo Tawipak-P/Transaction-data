@@ -1,4 +1,4 @@
-﻿using _2C2P.AssignmentTest.Infrastructor.Entities;
+﻿using Transaction.Infrastructor.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace _2C2P.AssignmentTest.Infrastructor
+namespace Transaction.Infrastructor
 {
     public class TransactionDbContext : DbContext
     {
