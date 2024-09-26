@@ -10,6 +10,6 @@ namespace Transaction.Infrastructor.Repositories.Interfaces
 {
     public interface ITransactionRepository
     {
-        Task<ResponseModel> UploadTransactionData(TransactionData transactionData);
+        Task<ResponseModel> UploadTransactionDataAsync(List<TransactionData> transactionData);
     }
 }

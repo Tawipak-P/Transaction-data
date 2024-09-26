@@ -23,23 +23,26 @@ namespace Transaction.Infrastructor.Repositories
         }
         #endregion
 
-        public async Task<ResponseModel> UploadTransactionData(TransactionData transactionData)
+        public async Task<ResponseModel> UploadTransactionDataAsync(List<TransactionData> transactionData)
         {
             ResponseModel response = new ResponseModel();
             try
             {
-                await _dbContext.TD_TransactionData.AddAsync(transactionData);
+                foreach(var transaction in transactionData)
+                {
+                    _dbContext.TD_TransactionData.Add(transaction);
+                }
                 await _dbContext.SaveChangesAsync();
                 response.IsSuccess = true;
+                return response;
             }
             catch(Exception ex)
             {
                 _logger?.LogError(ex.ToString());
                 response.IsSuccess = false;
                 response.ErrorMessages = new List<string> { ex.Message };
+                return response;
             }
-
-            return response;
         }
     }
 }
