@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Transaction.Infrastructor.Entities
 {
-    public class TransactionData
+    public class TD_Transaction
     {
         [Key]
         [MaxLength(50)]
@@ -16,8 +16,12 @@ namespace Transaction.Infrastructor.Entities
         [MaxLength(30)]
         public string AccountNo { get; set; }
         public decimal Amount { get; set; }
+
+        [MaxLength(3)]
         public string CurrencyCode { get; set; }
         public DateTime TransactionDate { get; set; }
+
+        [MaxLength(10)]
         public string Status { get; set; }
      }
 }
