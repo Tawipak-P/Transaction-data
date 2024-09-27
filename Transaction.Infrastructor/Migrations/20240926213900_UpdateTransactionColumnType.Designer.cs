@@ -12,8 +12,8 @@ using Transaction.Infrastructor;
 namespace Transaction.Infrastructor.Migrations
 {
     [DbContext(typeof(TransactionDbContext))]
-    [Migration("20240926114926_CreateTransactionDataTable")]
-    partial class CreateTransactionDataTable
+    [Migration("20240926213900_UpdateTransactionColumnType")]
+    partial class UpdateTransactionColumnType
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,11 +41,13 @@ namespace Transaction.Infrastructor.Migrations
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");

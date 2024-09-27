@@ -9,11 +9,11 @@ using Transaction.Infrastructor;
 
 #nullable disable
 
-namespace Transaction.Infrastructor.Migrations
+namespace _2C2P.AssignmentTest.Infrastructor.Migrations
 {
-    [DbContext(typeof(TransactionDbContext))]
-    [Migration("20240926114926_CreateTransactionDataTable")]
-    partial class CreateTransactionDataTable
+    [DbContext(typeof(TempTransactionDbContext))]
+    [Migration("20240927083712_CreateTempDb")]
+    partial class CreateTempDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Transaction.Infrastructor.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Transaction.Infrastructor.Entities.TD_Transactions", b =>
+            modelBuilder.Entity("Transaction.Infrastructor.Entities.TM_Transaction", b =>
                 {
                     b.Property<string>("TransactionId")
                         .HasMaxLength(50)
@@ -41,18 +41,23 @@ namespace Transaction.Infrastructor.Migrations
 
                     b.Property<string>("CurrencyCode")
                         .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
+                    b.Property<string>("Remark")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("TransactionId");
 
-                    b.ToTable("TD_Transactions");
+                    b.ToTable("TM_TransactionData");
                 });
 #pragma warning restore 612, 618
         }

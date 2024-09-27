@@ -12,8 +12,8 @@ using Transaction.Infrastructor;
 namespace Transaction.Infrastructor.Migrations
 {
     [DbContext(typeof(TransactionDbContext))]
-    [Migration("20240926114926_CreateTransactionDataTable")]
-    partial class CreateTransactionDataTable
+    [Migration("20240927152836_DropStoreTable")]
+    partial class DropStoreTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,14 +25,13 @@ namespace Transaction.Infrastructor.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Transaction.Infrastructor.Entities.TD_Transactions", b =>
+            modelBuilder.Entity("Transaction.Infrastructor.Entities.TD_Transaction", b =>
                 {
                     b.Property<string>("TransactionId")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("AccountNo")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
@@ -40,12 +39,12 @@ namespace Transaction.Infrastructor.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CurrencyCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
@@ -53,6 +52,25 @@ namespace Transaction.Infrastructor.Migrations
                     b.HasKey("TransactionId");
 
                     b.ToTable("TD_Transactions");
+                });
+
+            modelBuilder.Entity("_2C2P.AssignmentTest.Infrastructor.Entities.TD_Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Prefix")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TD_Statuses");
                 });
 #pragma warning restore 612, 618
         }

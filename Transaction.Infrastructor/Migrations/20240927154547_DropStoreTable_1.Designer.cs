@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Transaction.Infrastructor;
 
@@ -11,9 +12,11 @@ using Transaction.Infrastructor;
 namespace Transaction.Infrastructor.Migrations
 {
     [DbContext(typeof(TransactionDbContext))]
-    partial class TransactionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240927154547_DropStoreTable_1")]
+    partial class DropStoreTable_1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,6 +54,20 @@ namespace Transaction.Infrastructor.Migrations
                     b.ToTable("TD_Transactions");
                 });
 
+            modelBuilder.Entity("Transaction.Infrastructor.Entities.TransactionDataResults", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Payment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("TransactionDataResults");
+                });
+
             modelBuilder.Entity("_2C2P.AssignmentTest.Infrastructor.Entities.TD_Status", b =>
                 {
                     b.Property<int>("Id")
@@ -86,18 +103,6 @@ namespace Transaction.Infrastructor.Migrations
                         {
                             Id = 3,
                             Name = "Done",
-                            Prefix = "D"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Failed",
-                            Prefix = "R"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Finished",
                             Prefix = "D"
                         });
                 });
