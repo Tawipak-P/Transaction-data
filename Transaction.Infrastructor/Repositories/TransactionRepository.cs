@@ -1,12 +1,8 @@
-﻿using Transaction.Infrastructor.Entities;
-using Transaction.Infrastructor.Repositories.Interfaces;
+﻿using Transaction.Infrastructor.Repositories.Interfaces;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Transaction.Infrastructor.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
+using Transaction.Infrastructor.StoreProcedures;
 
 namespace Transaction.Infrastructor.Repositories
 {
@@ -23,25 +19,22 @@ namespace Transaction.Infrastructor.Repositories
         }
         #endregion
 
-        public async Task<ResponseModel> UploadTransactionDataAsync(List<TransactionData> transactionData)
+
+        public async Task<List<TransactionDataResults>> SearchTransactionDataAsync(List<SqlParameter> sqlParameter)
         {
-            ResponseModel response = new ResponseModel();
+            var response = new List<TransactionDataResults>();
             try
             {
-                foreach(var transaction in transactionData)
-                {
-                    _dbContext.TD_TransactionData.Add(transaction);
-                }
-                await _dbContext.SaveChangesAsync();
-                response.IsSuccess = true;
+                response =  await _dbContext.Set<TransactionDataResults>().FromSqlRaw(
+                    "EXECUTE dbo.SP_SearchTransaction @CurrencyCode, @DateFrom,@DateTo, @Status, @PageSize, @PageNumber",
+                    sqlParameter.ToArray()).ToListAsync();
                 return response;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger?.LogError(ex.ToString());
-                response.IsSuccess = false;
-                response.ErrorMessages = new List<string> { ex.Message };
-                return response;
+                throw ex.InnerException != null ? ex.InnerException : ex;
+                
             }
         }
     }

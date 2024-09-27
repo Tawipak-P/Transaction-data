@@ -1,15 +1,10 @@
-﻿using Transaction.Infrastructor.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Transaction.Infrastructor.Models;
+﻿using Transaction.Infrastructor.StoreProcedures;
+using Microsoft.Data.SqlClient;
 
 namespace Transaction.Infrastructor.Repositories.Interfaces
 {
     public interface ITransactionRepository
     {
-        Task<ResponseModel> UploadTransactionDataAsync(List<TransactionData> transactionData);
+        Task<List<TransactionDataResults>> SearchTransactionDataAsync(List<SqlParameter> sqlParameter);
     }
 }
