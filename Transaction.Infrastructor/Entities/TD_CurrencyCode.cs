@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Transaction.Infrastructor.Entities
 {
-    public class TD_Status
+    public class TD_CurrencyCode
     {
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Prefix { get; set; }
+
+        [MaxLength(3)]
+        public string CurrencyCode { get; set; }
     }
 }

@@ -12,5 +12,11 @@ namespace Transaction.Infrastructor
 
         public DbSet<TM_Transaction> TM_TransactionData {  get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<InsertTransactionDataResults>().HasNoKey();
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }

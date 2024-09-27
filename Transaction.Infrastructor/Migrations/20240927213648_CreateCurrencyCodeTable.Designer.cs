@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Transaction.Infrastructor;
 
@@ -11,9 +12,11 @@ using Transaction.Infrastructor;
 namespace Transaction.Infrastructor.Migrations
 {
     [DbContext(typeof(TransactionDbContext))]
-    partial class TransactionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240927213648_CreateCurrencyCodeTable")]
+    partial class CreateCurrencyCodeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,58 +40,6 @@ namespace Transaction.Infrastructor.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TD_CurrencyCodes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CurrencyCode = "USD"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CurrencyCode = "EUR"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CurrencyCode = "JPY"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CurrencyCode = "GBP"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CurrencyCode = "AUD"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CurrencyCode = "CAD"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CurrencyCode = "CHF"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CurrencyCode = "CNY"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CurrencyCode = "SEK"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CurrencyCode = "NZD"
-                        });
                 });
 
             modelBuilder.Entity("Transaction.Infrastructor.Entities.TD_Status", b =>
@@ -108,6 +59,20 @@ namespace Transaction.Infrastructor.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TD_Statuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1
+                        },
+                        new
+                        {
+                            Id = 2
+                        },
+                        new
+                        {
+                            Id = 3
+                        });
                 });
 
             modelBuilder.Entity("Transaction.Infrastructor.Entities.TD_Transaction", b =>
