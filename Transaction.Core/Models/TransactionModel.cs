@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Transaction.Infrastructor.Entities
+namespace Transaction.Core.Models
 {
     public class TransactionModel 
     {
@@ -17,14 +17,12 @@ namespace Transaction.Infrastructor.Entities
         [MaxLength(30, ErrorMessage = "Account No. shoud not exceed 30 characters.")]
         public string AccountNo { get; set; }
 
-        [Required]
-        public decimal Amount { get; set; }
+        public decimal? Amount { get; set; }
 
         [Required]
         public string CurrencyCode { get; set; }
 
-        [Required]
-        public DateTime TransactionDate { get; set; }
+        public DateTime? TransactionDate { get; set; }
 
         [Required]
         public string Status { get; set; }

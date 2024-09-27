@@ -1,4 +1,4 @@
-namespace _2C2P.Assignment.Test.Models
+namespace Transaction.Web.Models
 {
     public class ErrorViewModel
     {
