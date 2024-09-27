@@ -1,5 +1,6 @@
-﻿using Transaction.Infrastructor.Entities;
+﻿using Transaction.Infrastructor.StoreProcedures;
 using Microsoft.EntityFrameworkCore;
+using Transaction.Infrastructor.Entities;
 
 namespace Transaction.Infrastructor
 {

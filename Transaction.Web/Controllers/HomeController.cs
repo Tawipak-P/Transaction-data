@@ -1,8 +1,8 @@
-using _2C2P.Assignment.Test.Models;
+using Transaction.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace _2C2P.Assignment.Test.Controllers
+namespace Transaction.Web.Controllers
 {
     public class HomeController : Controller
     {
