@@ -25,6 +25,9 @@ namespace Transaction.Infrastructor.Entities
         public string Status { get; set; }
         public string? Remark { get; set; }
 
-        public int Action { get; set; }
+        public DateTime ModifiedDate { get; set; }
+        public DateTime TimeStamp { get; set; }
+        public int Action {  get; set; }
+        public bool IsTransfer { get; set; }
     }
 }

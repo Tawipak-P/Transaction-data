@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Transaction.Infrastructor;
 
 #nullable disable
 
-namespace _2C2P.AssignmentTest.Infrastructor.Migrations
+namespace Transaction.Infrastructor.Migrations.TempTransactionDb
 {
     [DbContext(typeof(TempTransactionDbContext))]
-    partial class TempTransactionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240928105708_AddActionColumn")]
+    partial class AddActionColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,25 +32,31 @@ namespace _2C2P.AssignmentTest.Infrastructor.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("AccountNo")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("Action")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CurrencyCode")
-                        .IsRequired()
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Remark")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
@@ -55,6 +64,17 @@ namespace _2C2P.AssignmentTest.Infrastructor.Migrations
                     b.HasKey("TransactionId");
 
                     b.ToTable("TM_Transaction");
+                });
+
+            modelBuilder.Entity("Transaction.Infrastructor.StoreProcedures.InsertTransactionDataResults", b =>
+                {
+                    b.Property<string>("ErrorMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsSuccess")
+                        .HasColumnType("bit");
+
+                    b.ToTable("InsertTransactionDataResults");
                 });
 #pragma warning restore 612, 618
         }

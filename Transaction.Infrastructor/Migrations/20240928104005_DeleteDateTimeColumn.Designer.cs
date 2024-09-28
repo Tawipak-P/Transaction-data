@@ -9,11 +9,11 @@ using Transaction.Infrastructor;
 
 #nullable disable
 
-namespace _2C2P.AssignmentTest.Infrastructor.Migrations
+namespace Transaction.Infrastructor.Migrations.TempTransactionDb
 {
     [DbContext(typeof(TempTransactionDbContext))]
-    [Migration("20240927215715_AddActionColumToTable")]
-    partial class AddActionColumToTable
+    [Migration("20240928104005_DeleteDateTimeColumn")]
+    partial class DeleteDateTimeColumn
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,9 +34,6 @@ namespace _2C2P.AssignmentTest.Infrastructor.Migrations
                     b.Property<string>("AccountNo")
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
-
-                    b.Property<int>("Action")
-                        .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");

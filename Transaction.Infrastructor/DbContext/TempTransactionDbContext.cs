@@ -11,7 +11,7 @@ namespace Transaction.Infrastructor
             
         }
 
-        public DbSet<TM_Transaction> TM_Transaction {  get; set; }
+        public DbSet<TM_Transaction> TM_Transactions {  get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

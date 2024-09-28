@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace _2C2P.AssignmentTest.Infrastructor.Migrations
+namespace Transaction.Infrastructor.Migrations
 {
     /// <inheritdoc />
     public partial class CreateTempDb : Migration
