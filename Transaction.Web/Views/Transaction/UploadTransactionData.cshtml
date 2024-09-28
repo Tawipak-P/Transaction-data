@@ -1,0 +1,63 @@
+﻿@model FileUploadModel;
+@{
+    ViewData["Title"] = "Upload Transaction";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <h1 class="text-header mt-5 mb-5">Upload File</h1>
+            <form id="transactionForm" asp-controller="Transaction" asp-action="UploadTransactionData" method="post" enctype="multipart/form-data">
+                
+                <div class="row">
+                    <label asp-for="TransactionFile" class="me-3 mb-2">File: </label>
+                    <div class="col-sm-10 col-lg-12  d-inline-flex">
+                        <input type="text" class="form-control" asp-for="FileName" disabled/>
+                        <label class="custom-fileupload">
+                            <input type="file" class="form-control" asp-for="TransactionFile" onchange="mapFileName()" />
+                            <span>Choose File</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div asp-validation-summary="All" class="text-danger fst-italic "></div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="d-flex justify-content-end mt-5">
+                            <a asp-controller="Transaction" asp-action="UploadTransactionData" type="button" class="btn btn-secondary me-2 disabled">Clear</a>
+                            <button type="submit" class="btn btn-success">Upload</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script type="text/javascript">
+
+        function mapFileName() {
+            let fileUpload = $("input[type='file']").val();
+            if (fileUpload != null) {
+                const fileName = fileUpload.substring(fileUpload.lastIndexOf('\\') + 1)
+                $('input[type="text"]').val(fileName).removeClass('input-validation-error');
+                $('a[type="button"]').removeClass('disabled');
+            }
+        }
+    </script>
+
+    @if (Model != null && Model.FileName != null)
+    {
+        <script>
+            $('a[type="button"]').removeClass('disabled');
+        </script>
+    }
+}
+

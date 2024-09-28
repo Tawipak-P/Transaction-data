@@ -1,0 +1,61 @@
+﻿@model FileUploadModel;
+@{
+    ViewData["Title"] = "Upload Transaction";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <h1 class="text-header mt-5 mb-5">Upload File</h1>
+            <form asp-controller="Transaction" asp-action="UploadTransactionData" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-sm-10 col-lg-12  d-inline-flex">
+                        <label asp-for="TransactionFile" class="me-3">File: </label>
+                        <input type="text" class="form-control fileName" asp-for="TransactionFile" />
+                        <input type="file" class="form-control" id="formFile" asp-for="TransactionFile" onchange="mapFileName()" />
+                    </div>
+                    <span asp-validation-for="TransactionFile" class="text-danger fst-italic ms-5 mt-1"></span>
+                </div>
+
+                <div class="d-flex justify-content-end mt-3">
+                    <button type="submit" class="btn btn-success">Upload</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<style>
+    #formFile {
+        width: 100px;
+    }
+    input{
+        border-radius: 0 !important;
+    }
+
+    .form-control:disabled{
+        background-color: #FFF;
+    }
+
+    .input-validation-error:focus{
+        border: solid 1px red;
+        box-shadow: none;
+    }
+</style>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script type="text/javascript">
+
+        function mapFileName() {
+            let fileUpload = $('#formFile').val();
+            if (fileUpload != null) {
+                const fileName = fileUpload.substring(fileUpload.lastIndexOf('\\') + 1)
+                $('.fileName').val(fileName).removeClass('input-validation-error');
+
+            }
+        }
+    </script>
+}
