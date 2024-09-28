@@ -5,6 +5,7 @@ using Transaction.Infrastructor.Repositories.Interfaces;
 using Transaction.Infrastructor.Repositories;
 using Transaction.Infrastructor;
 using Transaction.Core.MappingConfig;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,10 @@ builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
 builder.Services.AddAutoMapper(typeof(MappingConfig));
+
+//Setup Serilog config
+var serilogConfig = builder.Configuration.AddJsonFile("appsettings.json", reloadOnChange: true, optional: false).Build();
+Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(serilogConfig).CreateLogger();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

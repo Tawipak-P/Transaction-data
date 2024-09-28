@@ -1,5 +1,6 @@
 ﻿using Azure;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 using Transaction.Core.Models;
 using Transaction.Core.Services.Interfaces;
 using TransactionData.Core.DTO;
@@ -25,6 +26,7 @@ namespace TransactionData.Api.Controllers
             {
                 if (!ModelState.IsValid)
                 {
+                    Log.Error(ModelState.Values.SelectMany(e => e.Errors).ToArray().ToString());
                     return BadRequest();
                 }
                 response = await _transactionService.SearchTransactionDataAsync(searchCriteria);
@@ -34,6 +36,7 @@ namespace TransactionData.Api.Controllers
             {
                 response.IsSuccess = false;
                 response.ErrorMessages = new List<string> { ex.Message };
+                Log.Error(ex.ToString());
                 return BadRequest(response);
             }
         }

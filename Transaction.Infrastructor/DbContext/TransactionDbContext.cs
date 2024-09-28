@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Transaction.Infrastructor.StoreProcedures;
 
 namespace Transaction.Infrastructor
 {
@@ -22,18 +23,18 @@ namespace Transaction.Infrastructor
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<TransactionDataResults>().HasNoKey();
+            modelBuilder.Entity<TransactionDataResults>().HasNoKey();
 
-            //modelBuilder.Entity<TD_Status>().HasData(new List<TD_Status>
-            //{
-            //    new TD_Status() { Id = 1, Name = "Approved", Prefix = "A" },
-            //    new TD_Status() { Id = 2, Name = "Rejected", Prefix = "R" },
-            //    new TD_Status() { Id = 3, Name = "Done", Prefix = "D" },
-            //    new TD_Status() { Id = 4, Name = "Failed", Prefix = "R" },
-            //    new TD_Status() { Id = 5, Name = "Finished", Prefix = "D" }
-            //});
+            modelBuilder.Entity<TD_Status>().HasData(new List<TD_Status>
+            {
+                new TD_Status() { Id = 1, Name = "Approved", Prefix = "A" },
+                new TD_Status() { Id = 2, Name = "Rejected", Prefix = "R" },
+                new TD_Status() { Id = 3, Name = "Done", Prefix = "D" },
+                new TD_Status() { Id = 4, Name = "Failed", Prefix = "R" },
+                new TD_Status() { Id = 5, Name = "Finished", Prefix = "D" }
+            });
 
-            
+
 
             modelBuilder.Entity<TD_CurrencyCode>().HasData(new List<TD_CurrencyCode>
             {
