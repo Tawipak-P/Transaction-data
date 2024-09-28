@@ -24,5 +24,7 @@ namespace Transaction.Infrastructor.Entities
         [MaxLength(10)]
         public string Status { get; set; }
         public string? Remark { get; set; }
+
+        public int Action { get; set; }
     }
 }

@@ -12,7 +12,7 @@ namespace _2C2P.AssignmentTest.Infrastructor.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "TM_TransactionData",
+                name: "TM_Transaction",
                 columns: table => new
                 {
                     TransactionId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
@@ -25,7 +25,7 @@ namespace _2C2P.AssignmentTest.Infrastructor.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TM_TransactionData", x => x.TransactionId);
+                    table.PrimaryKey("PK_TM_Transaction", x => x.TransactionId);
                 });
         }
 
@@ -33,7 +33,7 @@ namespace _2C2P.AssignmentTest.Infrastructor.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TM_TransactionData");
+                name: "TM_Transaction");
         }
     }
 }

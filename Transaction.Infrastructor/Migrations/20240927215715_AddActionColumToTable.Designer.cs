@@ -12,8 +12,8 @@ using Transaction.Infrastructor;
 namespace _2C2P.AssignmentTest.Infrastructor.Migrations
 {
     [DbContext(typeof(TempTransactionDbContext))]
-    [Migration("20240927083712_CreateTempDb")]
-    partial class CreateTempDb
+    [Migration("20240927215715_AddActionColumToTable")]
+    partial class AddActionColumToTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,15 +32,16 @@ namespace _2C2P.AssignmentTest.Infrastructor.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("AccountNo")
-                        .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
+
+                    b.Property<int>("Action")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CurrencyCode")
-                        .IsRequired()
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
@@ -48,7 +49,6 @@ namespace _2C2P.AssignmentTest.Infrastructor.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasMaxLength(10)
                         .HasColumnType("nvarchar(10)");
 
