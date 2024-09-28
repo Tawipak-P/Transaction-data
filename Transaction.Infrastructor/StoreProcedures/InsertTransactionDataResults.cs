@@ -9,6 +9,7 @@ namespace Transaction.Infrastructor.StoreProcedures
 {
     public class InsertTransactionDataResults
     {
-        public int TotalRecords { get; set; }
-     }
+        public bool IsSuccess { get; set; }
+        public string ErrorMessage { get; set; }
+    }
 }
