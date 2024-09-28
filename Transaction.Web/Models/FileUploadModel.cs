@@ -9,5 +9,6 @@ namespace Transaction.Web.Models
         [AllowedExtension(new string[] { ".csv", ".xml" })]
         [Required(ErrorMessage = "Please select file.")]
         public IFormFile TransactionFile { get; set; }
+        public string? FileName { get; set; }
     }
 }
