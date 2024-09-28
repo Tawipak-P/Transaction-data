@@ -11,13 +11,11 @@ namespace Transaction.Infrastructor.Repositories
     public class TempTransactionRepository : ITempTransactionRepository
     {
         private readonly TempTransactionDbContext _tempDbContext;
-        private readonly ILogger<TempTransactionRepository> _logger;
 
         #region Constructor
-        public TempTransactionRepository(TempTransactionDbContext tempDbContext, ILogger<TempTransactionRepository> logger)
+        public TempTransactionRepository(TempTransactionDbContext tempDbContext)
         {
             _tempDbContext = tempDbContext;
-            _logger = logger;
         }
         #endregion
 
@@ -41,8 +39,7 @@ namespace Transaction.Infrastructor.Repositories
             }
             catch(Exception ex)
             {
-                _logger?.LogError(ex.ToString());
-                return false;
+                throw ex;
             }
         }
 
@@ -65,8 +62,7 @@ namespace Transaction.Infrastructor.Repositories
             }
             catch (Exception ex)
             {
-                _logger?.LogError(ex.ToString());
-                return false;
+                throw ex;
             }
         }
     }

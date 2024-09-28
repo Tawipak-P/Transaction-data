@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="TransactionData"
   DTS:PackageType="5"
-  DTS:VersionBuild="214"
-  DTS:VersionGUID="{2E7887E7-9FBE-4C46-BE3B-45342AE5257E}">
+  DTS:VersionBuild="215"
+  DTS:VersionGUID="{B16DC1B5-6F20-49FB-8153-EFA8604F735A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -29,7 +29,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADGHSx4vQXFU83VL7bLFVGT8nY3cqI6Y1TJYbvR10mNogAAAAAOgAAAAAIAACAAAABNtO2wtY47fCR+t+44lSygWKdyXGXu9OFU+wQPHRm8GTAAAABuYNsPCSToTkGcb3QatybUEIGhFoKH2SmvTFQO3v2ga1i04oPR45x3+2Ue8V6GP/lAAAAAhvNHkm+t2c+UtvfhiDZckERUWKk4M8geVNKIx2x0oM5TTLp/+5u5qTLZS255R4aB89Cg6TDYsp++15paVXO/3w</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACW59XchU3IGWPdBBTAsIqoYNGAwAGTTYUnpZ2Gl5msoAAAAAAOgAAAAAIAACAAAACFNUG4AIs+LYVbOyGugfNSicO0ObT7woaN0IVMX4E/8TAAAADkWQSa0RCTtdQZadKVotD8FgE84CsgLEOCgX9mcOg99zEVFY15Sf3YYiEa21CwjjFAAAAAa3PO+jzY0wz4qT6IJm1HyiNEI4ynAE5wlm0JfUCl/j1V6mqAjQ0TqPDBDaSP80+p/d1Zaj5chzgWdcU+N68dQA</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -46,7 +46,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAc4C4o2aaHHijaUroiKEHyPkGMQpnjwYcVTOTBIZxA3QAAAAAOgAAAAAIAACAAAADWKQcR2stCBGZiFMdE8ETDlLb/7yEwiLCZXbrBmkrMOTAAAABVrmbDhljG65v8tmvineAPx44WnNPq9uHc1lceFtqtoY4/Ziab+I07hsOFx/vLXoFAAAAA+weEMZVVdTiPhTusUqZWGd40vtPsVb+NQ2E+li0xa0G0jK4DQ5j9QzVrvatSzApIRogv9yah9GvrErHBVUw69w</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAVD+X2CEextuBp+Z+kr/YFdBfHhT2ILW/tPHtYHmvY6AAAAAAOgAAAAAIAACAAAAAmG4ha4Xpsuq7VVQ2BAHeRUrZby1w+GLGGw71enf1hMjAAAACFqW0RmCrpEpjL+OHQFz4bcPWf7WoaQdYd7nDiK/XJF5tuxovtd9vBvboMUNPOP+BAAAAAbkCFRiRe2tgK+VIN3FErsNz6uRmU73dccoMoxACo0xheW2cdjNd1sQlzLFxr1dOkzHtHoKaArEcEEtZqhKPE8w</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -4039,12 +4039,16 @@ WHERE TransactionId = ?</property>
           TopLeft="885.833284933536,277.333331404792" />
         <NodeLayout
           Size="167.2,41.6"
-          Id="Package\Insert Transaction (Action 1)\OLE DB Command"
-          TopLeft="106.666660838657,147.333332308796" />
+          Id="Package\Insert Transaction (Action 1)\Transaction Id Invalid"
+          TopLeft="197.499989209076,411.666663803988" />
         <NodeLayout
           Size="167.2,41.6"
-          Id="Package\Insert Transaction (Action 1)\Transaction Id Invalid"
-          TopLeft="140.833325638539,425.533330374228" />
+          Id="Package\Insert Transaction (Action 1)\OLE DB Command"
+          TopLeft="64.1666631607545,123.066665810877" />
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\Insert Transaction (Action 1)\Update IsTransfer"
+          TopLeft="60.6666639082962,256.799996132056" />
         <NodeLayout
           Size="152,41.6"
           Id="Package\Insert Transaction (Action 1)\OLE DB Source"
@@ -4059,57 +4063,69 @@ WHERE TransactionId = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-362.019977461994,232.933331223992"
+              EndConnector="-305.353313891458,219.066664653752"
               Start="0,0"
-              End="-362.019977461994,225.433331223992">
+              End="-305.353313891458,211.566664653752">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,66.1851522028622" />
+                    End="0,62.0069862930521" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,66.1851522028622"
-                    Point2="0,70.1851522028622"
-                    Point3="-4,70.1851522028622" />
+                    Point1="0,62.0069862930521"
+                    Point2="0,66.0069862930521"
+                    Point3="-4,66.0069862930521" />
                   <mssgle:LineSegment
-                    End="-358.019977461994,70.1851522028622" />
+                    End="-301.353313891458,66.0069862930521" />
                   <mssgle:CubicBezierSegment
-                    Point1="-358.019977461994,70.1851522028622"
-                    Point2="-362.019977461994,70.1851522028622"
-                    Point3="-362.019977461994,74.1851522028622" />
+                    Point1="-301.353313891458,66.0069862930521"
+                    Point2="-305.353313891458,66.0069862930521"
+                    Point3="-305.353313891458,70.0069862930521" />
                   <mssgle:LineSegment
-                    End="-362.019977461994,225.433331223992" />
+                    End="-305.353313891458,211.566664653752" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-227.244070762247,75.1851522028622,92.4681640625,9.7490234375"
+              BoundingBox="-198.910738976979,71.0069862930521,92.4681640625,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Insert Transaction (Action 1).Paths[Success]"
-          TopLeft="553.333303100534,169.966665729516">
+          TopLeft="553.333303100534,171.799999150236">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-279.466642261877,0"
+              EndConnector="-321.966639939779,-27.9333333393593"
               Start="0,0"
-              End="-271.966642261877,0">
+              End="-314.466639939779,-27.9333333393593">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-271.966642261877,0" />
+                    End="-156.98331996989,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-156.98331996989,0"
+                    Point2="-160.98331996989,0"
+                    Point3="-160.98331996989,-4" />
+                  <mssgle:LineSegment
+                    End="-160.98331996989,-23.9333333393593" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-160.98331996989,-23.9333333393593"
+                    Point2="-160.98331996989,-27.9333333393593"
+                    Point3="-164.98331996989,-27.9333333393593" />
+                  <mssgle:LineSegment
+                    End="-314.466639939779,-27.9333333393593" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-153.976563318438,5,35.986484375,9.5537109375"
+              BoundingBox="-178.97656215739,1,35.986484375,9.5537109375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4163,6 +4179,28 @@ WHERE TransactionId = ?</property>
                   Capacity="5">
                   <mssgle:LineSegment
                     End="0,79.3666659735967" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert Transaction (Action 1).Paths[OLE DB Command Output]"
+          TopLeft="144.616663534525,164.666665810877">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,92.1333303211794"
+              Start="0,0"
+              End="0,84.6333303211794">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,84.6333303211794" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4241,44 +4279,6 @@ WHERE TransactionId = ?</property>
             <mssgm:EdgeLabel
               BoundingBox="-89.1393847653435,119.745300095321,79.272109375,9.7490234375"
               RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="161.6,41.6"
-          Id="Package\Insert Transaction (Action 1)\Update IsTransfer"
-          TopLeft="13.9999997913838,261.999996095896" />
-        <EdgeLayout
-          Id="Package\Insert Transaction (Action 1).Paths[OLE DB Command Output]"
-          TopLeft="190.266660838657,188.933332308796">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-95.4666610472732,73.0666637870997"
-              Start="0,0"
-              End="-95.4666610472732,65.5666637870997">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,32.5333318935498" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,32.5333318935498"
-                    Point2="0,36.5333318935498"
-                    Point3="-4,36.5333318935498" />
-                  <mssgle:LineSegment
-                    End="-91.4666610472732,36.5333318935498" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-91.4666610472732,36.5333318935498"
-                    Point2="-95.4666610472732,36.5333318935498"
-                    Point3="-95.4666610472732,40.5333318935498" />
-                  <mssgle:LineSegment
-                    End="-95.4666610472732,65.5666637870997" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>

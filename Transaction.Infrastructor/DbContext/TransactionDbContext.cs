@@ -16,7 +16,7 @@ namespace Transaction.Infrastructor
             
         }
 
-        public DbSet<TD_Transaction> TD_Transactions {  get; set; }
+        public virtual DbSet<TD_Transaction> TD_Transactions {  get; set; }
         public DbSet<TD_Status> TD_Statuses { get; set; }
         public DbSet<TD_CurrencyCode> TD_CurrencyCodes { get; set; }
 

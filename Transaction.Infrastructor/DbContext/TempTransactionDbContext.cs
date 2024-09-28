@@ -16,6 +16,7 @@ namespace Transaction.Infrastructor
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<InsertTransactionDataResults>().HasNoKey();
+
             base.OnModelCreating(modelBuilder);
         }
 

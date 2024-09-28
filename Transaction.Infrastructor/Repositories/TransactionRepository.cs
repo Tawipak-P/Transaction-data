@@ -1,5 +1,4 @@
 ﻿using Transaction.Infrastructor.Repositories.Interfaces;
-using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using Transaction.Infrastructor.StoreProcedures;
@@ -9,13 +8,11 @@ namespace Transaction.Infrastructor.Repositories
     public class TransactionRepository : ITransactionRepository
     {
         private readonly TransactionDbContext _dbContext;
-        private readonly ILogger<TransactionRepository> _logger;
 
         #region Constructor
-        public TransactionRepository(TransactionDbContext dbContext, ILogger<TransactionRepository> logger)
+        public TransactionRepository(TransactionDbContext dbContext)
         {
             _dbContext = dbContext;
-            _logger = logger;
         }
         #endregion
 
@@ -32,7 +29,6 @@ namespace Transaction.Infrastructor.Repositories
             }
             catch (Exception ex)
             {
-                _logger?.LogError(ex.ToString());
                 throw ex.InnerException != null ? ex.InnerException : ex;
                 
             }

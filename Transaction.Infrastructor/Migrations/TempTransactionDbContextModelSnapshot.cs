@@ -25,12 +25,12 @@ namespace Transaction.Infrastructor.Migrations
             modelBuilder.Entity("Transaction.Infrastructor.Entities.TM_Transaction", b =>
                 {
                     b.Property<string>("TransactionId")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("AccountNo")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("Action")
                         .HasColumnType("int");
@@ -39,8 +39,8 @@ namespace Transaction.Infrastructor.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("CurrencyCode")
-                        .HasMaxLength(3)
-                        .HasColumnType("nvarchar(3)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<bool>("IsTransfer")
                         .HasColumnType("bit");
@@ -52,8 +52,8 @@ namespace Transaction.Infrastructor.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Status")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<DateTime>("TimeStamp")
                         .HasColumnType("datetime2");
@@ -64,6 +64,17 @@ namespace Transaction.Infrastructor.Migrations
                     b.HasKey("TransactionId");
 
                     b.ToTable("TM_Transactions");
+                });
+
+            modelBuilder.Entity("Transaction.Infrastructor.StoreProcedures.InsertTransactionDataResults", b =>
+                {
+                    b.Property<string>("ErrorMessage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsSuccess")
+                        .HasColumnType("bit");
+
+                    b.ToTable("InsertTransactionDataResults");
                 });
 #pragma warning restore 612, 618
         }
