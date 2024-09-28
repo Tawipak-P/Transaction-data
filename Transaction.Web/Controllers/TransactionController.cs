@@ -9,6 +9,8 @@ using CsvHelper.Configuration;
 using System.Xml;
 using AutoMapper;
 using System.Xml.Linq;
+using Serilog.Core;
+using Serilog;
 
 namespace Transaction.Web.Controllers
 {
@@ -25,7 +27,8 @@ namespace Transaction.Web.Controllers
         [HttpGet]
         public IActionResult UploadTransactionData()
         {
-            return View();
+            ModelState.Clear();
+            return View(new FileUploadModel());
         }
 
 
@@ -33,29 +36,42 @@ namespace Transaction.Web.Controllers
         public async Task<IActionResult> UploadTransactionData(FileUploadModel fileUploadModel)
         {
             var response = new ResponseModel();
-            if (!ModelState.IsValid)
+            try
             {
+                if (!ModelState.IsValid)
+                {
+                    fileUploadModel.FileName = fileUploadModel.TransactionFile.FileName;
+                    return View(fileUploadModel);
+                }
+
+                switch (Path.GetExtension(fileUploadModel.TransactionFile.FileName))
+                {
+                    case ".csv":
+                        var dataTable = ConvertCSVToDataTable(fileUploadModel.TransactionFile);
+                        response = await _tempTransactionService.UploadTransactionDataFromCSVAsync(dataTable);
+                        break;
+                    default:
+                        var xDocument = ConvertXmlToXDocument(fileUploadModel.TransactionFile);
+                        response = await _tempTransactionService.UploadTransactionDataFromXMLAsync(xDocument);
+                        break;
+                }
+
+                if (response.IsSuccess)
+                {
+                    TempData["success"] = "Uploaded successfully";
+                }
+
+                ModelState.Clear();
                 return View(fileUploadModel);
             }
-
-            switch (Path.GetExtension(fileUploadModel.TransactionFile.FileName))
+            catch (Exception ex)
             {
-                case ".csv":
-                    var dataTable = ConvertCSVToDataTable(fileUploadModel.TransactionFile);
-                    response = await _tempTransactionService.UploadTransactionDataFromCSVAsync(dataTable);
-                    break;
-                default:
-                    var xDocument = ConvertXmlToXDocument(fileUploadModel.TransactionFile);
-                    response = await _tempTransactionService.UploadTransactionDataFromXMLAsync(xDocument);
-                break;
+                response.IsSuccess = false;
+                TempData["error"] = "Unsuccess to upload transaction data";
+                Log.Error(ex.ToString());
+                ModelState.Clear();
+                return View();
             }
-
-            if(response.IsSuccess)
-            {
-                TempData["success"] = "Uploaded successfully";
-            }
-
-            return Ok();
         }
 
         private DataTable ConvertCSVToDataTable(IFormFile file)
@@ -77,33 +93,39 @@ namespace Transaction.Web.Controllers
             }
             return dataTable;
         }
-
         private XDocument ConvertXmlToXDocument(IFormFile file)
         {
             var extension = Path.GetExtension(file.FileName);
-            var fileName = file.FileName.Split('\\')[0] + '_'+ DateTime.Now.Millisecond + extension;
+            var fileName = file.FileName.Split('\\')[0] + '_' + DateTime.Now.Millisecond + extension;
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/xml", fileName);
-            using(var fileStream = new FileStream(filePath, FileMode.Create))
+            try
             {
-                file.CopyTo(fileStream);
-            }
-            var xDocument = XDocument.Load(filePath);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    file.CopyTo(fileStream);
+                }
+                var xDocument = XDocument.Load(filePath);
 
-            //clear file
-            if (!String.IsNullOrEmpty(xDocument.ToString()))
+                //clear file
+                if (!String.IsNullOrEmpty(xDocument.ToString()))
+                {
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                }
+                return xDocument;
+            }
+            catch (Exception ex)
             {
                 if (System.IO.File.Exists(filePath))
                 {
                     System.IO.File.Delete(filePath);
                 }
-            }
 
-            return xDocument;
+                throw ex;
+            } 
         }
 
-        private bool IsValidCurrencyCode(string currencyCode)
-        {
-            return !String.IsNullOrEmpty(currencyCode) && currencyCode.Length == 3 && currencyCode.All(char.IsUpper);
-        }
     }
 }
