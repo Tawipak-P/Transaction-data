@@ -1,0 +1,21 @@
+USE [TransactionDB]
+GO
+
+/****** Object:  Table [dbo].[TD_CurrencyCodes]    Script Date: 9/29/2024 4:11:44 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[TD_CurrencyCodes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[CurrencyCode] [nvarchar](3) NULL,
+ CONSTRAINT [PK_TD_CurrencyCodes] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
