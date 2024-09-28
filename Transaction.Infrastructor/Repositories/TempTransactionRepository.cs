@@ -32,7 +32,7 @@ namespace Transaction.Infrastructor.Repositories
                 };
                 var result = await _tempDbContext.Set<InsertTransactionDataResults>().FromSqlRaw("EXECUTE dbo.SP_InsertTransactionDataFromCSV @DataTable", sqlParam).ToListAsync();
 
-                if (result.FirstOrDefault().TotalRecords > 0)
+                if (result.FirstOrDefault().IsSuccess)
                 {
                     return true;
                 }
@@ -56,7 +56,7 @@ namespace Transaction.Infrastructor.Repositories
                 };
                 var result = await _tempDbContext.Set<InsertTransactionDataResults>().FromSqlRaw("EXECUTE dbo.SP_InsertTransactionDataFromXML @XmlInput", sqlParam).ToListAsync();
 
-                if (result.FirstOrDefault().TotalRecords > 0)
+                if (result.FirstOrDefault().IsSuccess)
                 {
                     return true;
                 }
