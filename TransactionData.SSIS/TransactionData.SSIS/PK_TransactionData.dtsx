@@ -25,11 +25,11 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-31TQNV5N\SQLEXPRESS;User ID=@dmin-tp;Initial Catalog=Temp_TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{F340EC91-EF4F-4736-812D-86D4E1519884}LAPTOP-31TQNV5N\SQLEXPRESS.Temp_TransactionDB.@dmin-tp;">
+          DTS:ConnectionString="Data Source=[ServerName];User ID=[UserName];Initial Catalog=Temp_TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{F340EC91-EF4F-4736-812D-86D4E1519884}LAPTOP-31TQNV5N\SQLEXPRESS.Temp_TransactionDB.@dmin-tp;">
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACwzvYfZjR6aKA0GwWYGT18UQS329SGamCFGl/mQLJKJgAAAAAOgAAAAAIAACAAAAByiN3uRMa8frGWm8wKW7R/cBwPJ9nZVwo9ucXyRLbiaTAAAADDJogqHWa8sxWew/9fVy5gf1xCCgwhP597Ypi4vxg/ocuH4WFh/FABu3UoL0TVvRBAAAAAFMkjVxsRi3SV0LP17fApPXwZLnnF8NT1gdnNGZ2RVUeoly79UqbK1JYooidmh7h8IfUvWM82Txpe+m/jAiaBGQ</DTS:Password>
+            Encrypted="1">[Password]</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -42,11 +42,11 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-31TQNV5N\SQLEXPRESS;User ID=@dmin-tp;Initial Catalog=TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{BDFDCA2B-A3EA-4962-985D-D1133D5D2C7C}LAPTOP-31TQNV5N\SQLEXPRESS.TransactionDB.@dmin-tp;">
+          DTS:ConnectionString="Data Source=[ServerName];User ID=[UserName];Initial Catalog=TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{BDFDCA2B-A3EA-4962-985D-D1133D5D2C7C}LAPTOP-31TQNV5N\SQLEXPRESS.TransactionDB.@dmin-tp;">
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACZWV35zpDDuxbJDa5gBzsoruMmvv4li4r+ykBlrXnn+wAAAAAOgAAAAAIAACAAAADGy14fPX2XMGw6vk59pENFRENhNRQa/vQrSjOLra5U0zAAAACJ0L4eRMwnung0BhGp6gl9b/ivbkAveJR8w7IfMp38RkFl2IcM7SwWOgG/vpLdQqFAAAAADXzRzbO7/bbwZ+nMbVf80Zff53MJe7qap//1N5znR/aW+HOkl6MURpQzCrPr9o4n1o6nThHcUcCaWockeZExlw</DTS:Password>
+            Encrypted="1">[Password]</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
