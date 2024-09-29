@@ -1,0 +1,15 @@
+#Upload Files (.CSV and .XML)
+
+- Separated database to Temp_TransactionDB and TransactionDB.
+- Separated the method to upload files into 2 methods for easy management.
+
+- For the .csv file, I use the DataTable class to send the data to store procedures.
+- For the .xml file, I use the XDocument class to send the data to store procedures.
+
+- The first time, when we upload the data it will be stored in Temp Db by store procedures without data validation, but if the data fails during upload processing it will be rolled back all of the data.
+
+- In the application, used Serilog to store the error.
+
+- If the process to upload is a success, the next step is to run the SSIS package to transfer the data from Temp DB to Transaction DB, in this package there are processes to validate the data.
+
+- In some datasets, if there is an error, that dataset will not be uploaded to Transaction DB and an error message will be stored in the Remark field.
