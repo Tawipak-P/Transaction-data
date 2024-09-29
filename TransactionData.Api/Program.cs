@@ -4,7 +4,6 @@ using Transaction.Core.Services;
 using Transaction.Infrastructor.Repositories.Interfaces;
 using Transaction.Infrastructor.Repositories;
 using Transaction.Infrastructor;
-using Transaction.Core.MappingConfig;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +18,6 @@ builder.Services.AddDbContext<TransactionDbContext>(options =>
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
-builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 //Setup Serilog config
 var serilogConfig = builder.Configuration.AddJsonFile("appsettings.json", reloadOnChange: true, optional: false).Build();
