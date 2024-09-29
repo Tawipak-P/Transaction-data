@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="TransactionData"
   DTS:PackageType="5"
-  DTS:VersionBuild="213"
-  DTS:VersionGUID="{310896F0-DBDD-4DC8-9813-C860BD26EC43}">
+  DTS:VersionBuild="255"
+  DTS:VersionGUID="{9F50BE76-105A-479E-AC7C-85FD2A21BB69}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -25,11 +25,11 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=[ServerName];User ID=[UserName];Initial Catalog=Temp_TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{F340EC91-EF4F-4736-812D-86D4E1519884}LAPTOP-31TQNV5N\SQLEXPRESS.Temp_TransactionDB.@dmin-tp;">
+          DTS:ConnectionString="Data Source=LAPTOP-31TQNV5N\SQLEXPRESS;User ID=@dmin-tp;Initial Catalog=Temp_TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{F340EC91-EF4F-4736-812D-86D4E1519884}LAPTOP-31TQNV5N\SQLEXPRESS.Temp_TransactionDB.@dmin-tp;">
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">[Password]</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAUyyEbOf0jpXRl2ocivjXFs0Oplyjg+BGw+svt4KLxbQAAAAAOgAAAAAIAACAAAACVeFTsneNpyiikS35vY9HXtetulPSGpI8vXQAHz8c0FTAAAAB5K71QvPm+gR1KPC9JQRcAYdLUQnGMfET2Kg8I6R39w+Fhb7eIKse+VqcZkMegdOtAAAAAdCBnWDCy+fQzOgoUfj8Iz4ibvQ+91iUrAyxFYooNr32i4P60w0HIb15VJPau0TOny3JxvBLubKjNjs2Eun8EYQ</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -42,11 +42,11 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=[ServerName];User ID=[UserName];Initial Catalog=TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{BDFDCA2B-A3EA-4962-985D-D1133D5D2C7C}LAPTOP-31TQNV5N\SQLEXPRESS.TransactionDB.@dmin-tp;">
+          DTS:ConnectionString="Data Source=LAPTOP-31TQNV5N\SQLEXPRESS;User ID=@dmin-tp;Initial Catalog=TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{BDFDCA2B-A3EA-4962-985D-D1133D5D2C7C}LAPTOP-31TQNV5N\SQLEXPRESS.TransactionDB.@dmin-tp;">
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">[Password]</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADz+R9HanHR4oToTqE0exe1YzvxBs5eA33imbDoM9wWBAAAAAAOgAAAAAIAACAAAAA/grFitjXoyjYteAViE3hnANWrlWcIZllcxEyvUvNN5jAAAACmFbfqH+yCUkxRWPlb6HI6zFxZ66GFvg6Af6k0XCf/Xrx+xy70q5TMWwIllO28TlZAAAAA332de/lLrWDlTODO/yZqX+23ilSTfxE+ujbifpsFgZoY0anSzf3fMSn1uTvIpgE422AERNsf+d/cbYMIFgPXQw</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -274,12 +274,6 @@ WHERE TransactionId = ?</property>
                       cachedName="Status"
                       lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]" />
                     <inputColumn
-                      refId="Package\Insert Transaction (Action 1)\Conditional Split.Inputs[Conditional Split Input].Columns[CurrencyCode]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CurrencyCode"
-                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
-                    <inputColumn
                       refId="Package\Insert Transaction (Action 1)\Conditional Split.Inputs[Conditional Split Input].Columns[TransactionId]"
                       cachedDataType="wstr"
                       cachedLength="50"
@@ -388,34 +382,6 @@ WHERE TransactionId = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Insert Transaction (Action 1)\Conditional Split.Outputs[CurrencyInCodeInValid]"
-                  description="Output 2 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="CurrencyInCodeInValid"
-                  synchronousInputId="Package\Insert Transaction (Action 1)\Conditional Split.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[LEN](#{Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]}) != 3</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">LEN(CurrencyCode) != 3</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">3</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
                   refId="Package\Insert Transaction (Action 1)\Conditional Split.Outputs[AmountInValid]"
                   description="Output 5 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
@@ -439,7 +405,7 @@ WHERE TransactionId = ?</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">4</property>
+                      name="EvaluationOrder">3</property>
                   </properties>
                   <externalMetadataColumns />
                 </output>
@@ -583,6 +549,165 @@ WHERE TransactionId = ?</property>
               </outputs>
             </component>
             <component
+              refId="Package\Insert Transaction (Action 1)\Lookup Currency Code"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Currency Code"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[TD_CurrencyCodes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[TD_CurrencyCodes]) [refTable]
+where [refTable].[CurrencyCode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[TransactionDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[TransactionDB]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Inputs[Lookup Input].Columns[CurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CurrencyCode"
+                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CurrencyCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Match Output].Columns[CurrencyCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="3"
+                      lineageId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Match Output].Columns[CurrencyCode]"
+                      name="CurrencyCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CurrencyCode</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Insert Transaction (Action 1)\OLE DB Command"
               componentClassID="Microsoft.OLEDBCommand"
               contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
@@ -607,9 +732,10 @@ WHERE TransactionId = ?</property>
     Amount,
     CurrencyCode,
     TransactionDate,
-    Status )
+    Status,
+    CreateDate )
 VALUES
-(?,?,?,?,?,?)</property>
+(?,?,?,?,?,?,GETDATE())</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -1308,6 +1434,7 @@ WHERE TransactionId = ?</property>
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE TM_Transactions
 SET 
 IsTransfer =  1,
+Remark = NULL,
 ModifiedDate = GETDATE()
 WHERE TransactionId = ?</property>
                 <property
@@ -1344,7 +1471,7 @@ WHERE TransactionId = ?</property>
                     <externalMetadataColumn
                       refId="Package\Insert Transaction (Action 1)\Update IsTransfer.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       name="Param_0">
                       <properties>
                         <property
@@ -1396,10 +1523,15 @@ WHERE TransactionId = ?</property>
               name="AccountNoInValid"
               startId="Package\Insert Transaction (Action 1)\Conditional Split.Outputs[AccountNoInValid]" />
             <path
-              refId="Package\Insert Transaction (Action 1).Paths[CurrencyInCodeInValid]"
+              refId="Package\Insert Transaction (Action 1).Paths[Lookup Match Output]"
+              endId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Insert Transaction (Action 1).Paths[Lookup No Match Output]"
               endId="Package\Insert Transaction (Action 1)\Currency Code Invalid.Inputs[OLE DB Command Input]"
-              name="CurrencyInCodeInValid"
-              startId="Package\Insert Transaction (Action 1)\Conditional Split.Outputs[CurrencyInCodeInValid]" />
+              name="Lookup No Match Output"
+              startId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup No Match Output]" />
             <path
               refId="Package\Insert Transaction (Action 1).Paths[OLE DB Command Output]"
               endId="Package\Insert Transaction (Action 1)\Update IsTransfer.Inputs[OLE DB Command Input]"
@@ -1417,7 +1549,7 @@ WHERE TransactionId = ?</property>
               startId="Package\Insert Transaction (Action 1)\Conditional Split.Outputs[StatusInValid]" />
             <path
               refId="Package\Insert Transaction (Action 1).Paths[Success]"
-              endId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input]"
+              endId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Inputs[Lookup Input]"
               name="Success"
               startId="Package\Insert Transaction (Action 1)\Conditional Split.Outputs[Success]" />
             <path
@@ -1564,12 +1696,6 @@ WHERE TransactionId = ?</property>
                       cachedName="Status"
                       lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]" />
                     <inputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\Conditional Split.Inputs[Conditional Split Input].Columns[CurrencyCode]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CurrencyCode"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
-                    <inputColumn
                       refId="Package\Re-Insert Transaction (Action 2)\Conditional Split.Inputs[Conditional Split Input].Columns[TransactionId]"
                       cachedDataType="wstr"
                       cachedLength="50"
@@ -1678,34 +1804,6 @@ WHERE TransactionId = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Re-Insert Transaction (Action 2)\Conditional Split.Outputs[CurrencyInCodeInValid]"
-                  description="Output 2 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="CurrencyInCodeInValid"
-                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\Conditional Split.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[LEN](#{Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]}) != 3</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">LEN(CurrencyCode) != 3</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">3</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
                   refId="Package\Re-Insert Transaction (Action 2)\Conditional Split.Outputs[AmountInValid]"
                   description="Output 5 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
@@ -1729,7 +1827,7 @@ WHERE TransactionId = ?</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">4</property>
+                      name="EvaluationOrder">3</property>
                   </properties>
                   <externalMetadataColumns />
                 </output>
@@ -1828,7 +1926,7 @@ WHERE TransactionId = ?</property>
                     <externalMetadataColumn
                       refId="Package\Re-Insert Transaction (Action 2)\Currency Code Invalid.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       name="Param_0">
                       <properties>
                         <property
@@ -1873,6 +1971,165 @@ WHERE TransactionId = ?</property>
               </outputs>
             </component>
             <component
+              refId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Currency Code"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[TD_CurrencyCodes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[TD_CurrencyCodes]) [refTable]
+where [refTable].[CurrencyCode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[TransactionDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[TransactionDB]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input].Columns[CurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CurrencyCode"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CurrencyCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Match Output].Columns[CurrencyCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="3"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Match Output].Columns[CurrencyCode]"
+                      name="CurrencyCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CurrencyCode</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command"
               componentClassID="Microsoft.OLEDBCommand"
               contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
@@ -1897,9 +2154,10 @@ WHERE TransactionId = ?</property>
     Amount,
     CurrencyCode,
     TransactionDate,
-    Status )
+    Status,
+    CreateDate )
 VALUES
-(?,?,?,?,?,?)</property>
+(?,?,?,?,?,?,GETDATE())</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -2068,107 +2326,6 @@ VALUES
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1"
-              componentClassID="Microsoft.OLEDBCommand"
-              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="OLE DB Command 1"
-              usesDispositions="true"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE TM_Transactions
-SET 
-IsTransfer =  1,
-ModifiedDate = GETDATE()
-WHERE TransactionId = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Temp_TransactionDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[Temp_TransactionDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Inputs[OLE DB Command Input]"
-                  errorOrTruncationOperation="Command Execution"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Command Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Inputs[OLE DB Command Input].Columns[TransactionId]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="TransactionId"
-                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionId]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      dataType="wstr"
-                      length="50"
-                      name="Param_0">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Outputs[OLE DB Command Output]"
-                  exclusionGroup="1"
-                  name="OLE DB Command Output"
-                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Inputs[OLE DB Command Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Outputs[OLE DB Command Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Command Error Output"
-                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Inputs[OLE DB Command Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -2352,12 +2509,12 @@ WHERE Action = 2 AND IsTransfer = 0</property>
                     <externalMetadataColumn
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TransactionId]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       name="TransactionId" />
                     <externalMetadataColumn
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AccountNo]"
                       dataType="wstr"
-                      length="30"
+                      length="100"
                       name="AccountNo" />
                     <externalMetadataColumn
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
@@ -2368,7 +2525,7 @@ WHERE Action = 2 AND IsTransfer = 0</property>
                     <externalMetadataColumn
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
                       dataType="wstr"
-                      length="3"
+                      length="30"
                       name="CurrencyCode" />
                     <externalMetadataColumn
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TransactionDate]"
@@ -2378,7 +2535,7 @@ WHERE Action = 2 AND IsTransfer = 0</property>
                     <externalMetadataColumn
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Status]"
                       dataType="wstr"
-                      length="10"
+                      length="30"
                       name="Status" />
                     <externalMetadataColumn
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Remark]"
@@ -2424,19 +2581,19 @@ WHERE Action = 2 AND IsTransfer = 0</property>
                     <outputColumn
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Status]"
                       dataType="wstr"
-                      length="10"
+                      length="30"
                       lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Status]"
                       name="Status" />
                     <outputColumn
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TransactionId]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TransactionId]"
                       name="TransactionId" />
                     <outputColumn
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountNo]"
                       dataType="wstr"
-                      length="30"
+                      length="100"
                       lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountNo]"
                       name="AccountNo" />
                     <outputColumn
@@ -2449,7 +2606,7 @@ WHERE Action = 2 AND IsTransfer = 0</property>
                     <outputColumn
                       refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
                       dataType="wstr"
-                      length="3"
+                      length="30"
                       lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
                       name="CurrencyCode" />
                     <outputColumn
@@ -2692,6 +2849,108 @@ WHERE TransactionId = ?</property>
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\Re-Insert Transaction (Action 2)\Update Remark"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update Remark"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE TM_Transactions
+SET 
+IsTransfer =  1,
+Remark = NULL,
+ModifiedDate = GETDATE()
+WHERE TransactionId = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Re-Insert Transaction (Action 2)\Update Remark.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Temp_TransactionDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[Temp_TransactionDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Re-Insert Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input].Columns[TransactionId]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TransactionId"
+                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="100"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Re-Insert Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Re-Insert Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
@@ -2700,13 +2959,18 @@ WHERE TransactionId = ?</property>
               name="AccountNoInValid"
               startId="Package\Re-Insert Transaction (Action 2)\Conditional Split.Outputs[AccountNoInValid]" />
             <path
-              refId="Package\Re-Insert Transaction (Action 2).Paths[CurrencyInCodeInValid]"
+              refId="Package\Re-Insert Transaction (Action 2).Paths[Lookup Match Output]"
+              endId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Re-Insert Transaction (Action 2).Paths[Lookup No Match Output]"
               endId="Package\Re-Insert Transaction (Action 2)\Currency Code Invalid.Inputs[OLE DB Command Input]"
-              name="CurrencyInCodeInValid"
-              startId="Package\Re-Insert Transaction (Action 2)\Conditional Split.Outputs[CurrencyInCodeInValid]" />
+              name="Lookup No Match Output"
+              startId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup No Match Output]" />
             <path
               refId="Package\Re-Insert Transaction (Action 2).Paths[OLE DB Command Output]"
-              endId="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1.Inputs[OLE DB Command Input]"
+              endId="Package\Re-Insert Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input]"
               name="OLE DB Command Output"
               startId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Output]" />
             <path
@@ -2721,7 +2985,7 @@ WHERE TransactionId = ?</property>
               startId="Package\Re-Insert Transaction (Action 2)\Conditional Split.Outputs[StatusInValid]" />
             <path
               refId="Package\Re-Insert Transaction (Action 2).Paths[Success]"
-              endId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]"
+              endId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input]"
               name="Success"
               startId="Package\Re-Insert Transaction (Action 2)\Conditional Split.Outputs[Success]" />
             <path
@@ -2748,6 +3012,295 @@ WHERE TransactionId = ?</property>
           version="1">
           <components>
             <component
+              refId="Package\Update Transaction (Action 2)\Compare with main DB"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Compare with main DB"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[TD_Transactions]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[TD_Transactions]) [refTable]
+where [refTable].[Status] = ? and [refTable].[AccountNo] = ? and [refTable].[Amount] = ? and [refTable].[CurrencyCode] = ? and [refTable].[TransactionDate] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="TransactionId" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="AccountNo" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Amount" dataType="DT_NUMERIC" length="0" precision="18" scale="2" codePage="0"/&gt;&lt;referenceColumn name="CurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TransactionDate" dataType="DT_DBTIMESTAMP2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="Status" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CreateDate" dataType="DT_DBTIMESTAMP2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;referenceColumn name="ModifiedDate" dataType="DT_DBTIMESTAMP2" length="0" precision="0" scale="7" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]};#{Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNo]};#{Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]};#{Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]};#{Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionDate]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Update Transaction (Action 2)\Compare with main DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[TransactionDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[TransactionDB]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Update Transaction (Action 2)\Compare with main DB.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Inputs[Lookup Input].Columns[AccountNo]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="AccountNo"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNo]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">AccountNo</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Inputs[Lookup Input].Columns[Amount]"
+                      cachedDataType="numeric"
+                      cachedName="Amount"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Amount</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Inputs[Lookup Input].Columns[CurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CurrencyCode"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CurrencyCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Inputs[Lookup Input].Columns[TransactionDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="TransactionDate"
+                      cachedScale="7"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionDate]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">TransactionDate</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Inputs[Lookup Input].Columns[Status]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Status"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">Status</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Compare with main DB.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output].Columns[AccountNo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="30"
+                      lineageId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output].Columns[AccountNo]"
+                      name="AccountNo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">AccountNo</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output].Columns[Amount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output].Columns[Amount]"
+                      name="Amount"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Amount</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output].Columns[CurrencyCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="3"
+                      lineageId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output].Columns[CurrencyCode]"
+                      name="CurrencyCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CurrencyCode</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output].Columns[TransactionDate]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output].Columns[TransactionDate]"
+                      name="TransactionDate"
+                      scale="7"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">TransactionDate</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output].Columns[Status]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="10"
+                      lineageId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">Status</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Compare with main DB.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Compare with main DB.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Update Transaction (Action 2)\Conditional Split"
               componentClassID="Microsoft.ConditionalSplit"
               contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
@@ -2766,12 +3319,6 @@ WHERE TransactionId = ?</property>
                       cachedLength="10"
                       cachedName="Status"
                       lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]" />
-                    <inputColumn
-                      refId="Package\Update Transaction (Action 2)\Conditional Split.Inputs[Conditional Split Input].Columns[CurrencyCode]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CurrencyCode"
-                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
                     <inputColumn
                       refId="Package\Update Transaction (Action 2)\Conditional Split.Inputs[Conditional Split Input].Columns[TransactionId]"
                       cachedDataType="wstr"
@@ -2881,34 +3428,6 @@ WHERE TransactionId = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Update Transaction (Action 2)\Conditional Split.Outputs[CurrencyInCodeInValid]"
-                  description="Output 2 of the Conditional Split Transformation"
-                  errorOrTruncationOperation="Computation"
-                  errorRowDisposition="FailComponent"
-                  exclusionGroup="1"
-                  name="CurrencyInCodeInValid"
-                  synchronousInputId="Package\Update Transaction (Action 2)\Conditional Split.Inputs[Conditional Split Input]"
-                  truncationRowDisposition="FailComponent">
-                  <properties>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
-                      name="Expression">[LEN](#{Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]}) != 3</property>
-                    <property
-                      containsID="true"
-                      dataType="System.String"
-                      description="Specifies the friendly version of the expression. This expression version uses column names."
-                      expressionType="Notify"
-                      name="FriendlyExpression">LEN(CurrencyCode) != 3</property>
-                    <property
-                      dataType="System.Int32"
-                      description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">3</property>
-                  </properties>
-                  <externalMetadataColumns />
-                </output>
-                <output
                   refId="Package\Update Transaction (Action 2)\Conditional Split.Outputs[AmountInValid]"
                   description="Output 5 of the Conditional Split Transformation"
                   errorOrTruncationOperation="Computation"
@@ -2932,7 +3451,7 @@ WHERE TransactionId = ?</property>
                     <property
                       dataType="System.Int32"
                       description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
-                      name="EvaluationOrder">4</property>
+                      name="EvaluationOrder">3</property>
                   </properties>
                   <externalMetadataColumns />
                 </output>
@@ -3076,6 +3595,165 @@ WHERE TransactionId = ?</property>
               </outputs>
             </component>
             <component
+              refId="Package\Update Transaction (Action 2)\Lookup Currency Code"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup Currency Code"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[TD_CurrencyCodes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[TD_CurrencyCodes]) [refTable]
+where [refTable].[CurrencyCode] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="Id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CurrencyCode" dataType="DT_WSTR" length="3" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Update Transaction (Action 2)\Lookup Currency Code.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[TransactionDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[TransactionDB]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Update Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input].Columns[CurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CurrencyCode"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CurrencyCode</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Match Output].Columns[CurrencyCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="3"
+                      lineageId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Match Output].Columns[CurrencyCode]"
+                      name="CurrencyCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">CurrencyCode</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Update Transaction (Action 2)\OLE DB Command"
               componentClassID="Microsoft.OLEDBCommand"
               contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
@@ -3099,7 +3777,8 @@ SET
     Amount = ?,
     CurrencyCode = ?,
     TransactionDate = ?,
-    Status = ?
+    Status = ?,
+    ModifiedDate = GETDATE()
 WHERE TransactionId = ?</property>
                 <property
                   dataType="System.Int32"
@@ -3403,7 +4082,7 @@ WHERE TransactionId = ?</property>
                   description="The SQL command to be executed."
                   name="SqlCommand"
                   UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  * FROM TM_Transactions
-WHERE Action = 2</property>
+WHERE Action = 2 AND IsTransfer = 1</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -3553,12 +4232,12 @@ WHERE Action = 2</property>
                     <externalMetadataColumn
                       refId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TransactionId]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       name="TransactionId" />
                     <externalMetadataColumn
                       refId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[AccountNo]"
                       dataType="wstr"
-                      length="30"
+                      length="100"
                       name="AccountNo" />
                     <externalMetadataColumn
                       refId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
@@ -3569,7 +4248,7 @@ WHERE Action = 2</property>
                     <externalMetadataColumn
                       refId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
                       dataType="wstr"
-                      length="3"
+                      length="30"
                       name="CurrencyCode" />
                     <externalMetadataColumn
                       refId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[TransactionDate]"
@@ -3579,7 +4258,7 @@ WHERE Action = 2</property>
                     <externalMetadataColumn
                       refId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Status]"
                       dataType="wstr"
-                      length="10"
+                      length="30"
                       name="Status" />
                     <externalMetadataColumn
                       refId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Remark]"
@@ -3625,19 +4304,19 @@ WHERE Action = 2</property>
                     <outputColumn
                       refId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Status]"
                       dataType="wstr"
-                      length="10"
+                      length="30"
                       lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Status]"
                       name="Status" />
                     <outputColumn
                       refId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TransactionId]"
                       dataType="wstr"
-                      length="50"
+                      length="100"
                       lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[TransactionId]"
                       name="TransactionId" />
                     <outputColumn
                       refId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountNo]"
                       dataType="wstr"
-                      length="30"
+                      length="100"
                       lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[AccountNo]"
                       name="AccountNo" />
                     <outputColumn
@@ -3650,7 +4329,7 @@ WHERE Action = 2</property>
                     <outputColumn
                       refId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
                       dataType="wstr"
-                      length="3"
+                      length="30"
                       lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
                       name="CurrencyCode" />
                     <outputColumn
@@ -3893,6 +4572,108 @@ WHERE TransactionId = ?</property>
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\Update Transaction (Action 2)\Update Remark"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update Remark"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE TM_Transactions
+SET 
+IsTransfer =  1,
+Remark = NULL,
+ModifiedDate = GETDATE()
+WHERE TransactionId = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Update Transaction (Action 2)\Update Remark.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Temp_TransactionDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[Temp_TransactionDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Update Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input].Columns[TransactionId]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TransactionId"
+                      externalMetadataColumnId="Package\Update Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Update Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="100"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Update Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Update Transaction (Action 2)\Update Remark.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
@@ -3901,10 +4682,25 @@ WHERE TransactionId = ?</property>
               name="AccountNoInValid"
               startId="Package\Update Transaction (Action 2)\Conditional Split.Outputs[AccountNoInValid]" />
             <path
-              refId="Package\Update Transaction (Action 2).Paths[CurrencyInCodeInValid]"
+              refId="Package\Update Transaction (Action 2).Paths[Lookup Match Output]"
+              endId="Package\Update Transaction (Action 2)\Compare with main DB.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\Update Transaction (Action 2).Paths[Lookup No Match Output]"
+              endId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Lookup No Match Output"
+              startId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Update Transaction (Action 2).Paths[Lookup No Match Output1]"
               endId="Package\Update Transaction (Action 2)\Currency Code Invalid.Inputs[OLE DB Command Input]"
-              name="CurrencyInCodeInValid"
-              startId="Package\Update Transaction (Action 2)\Conditional Split.Outputs[CurrencyInCodeInValid]" />
+              name="Lookup No Match Output"
+              startId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\Update Transaction (Action 2).Paths[OLE DB Command Output]"
+              endId="Package\Update Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input]"
+              name="OLE DB Command Output"
+              startId="Package\Update Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Output]" />
             <path
               refId="Package\Update Transaction (Action 2).Paths[OLE DB Source Output]"
               endId="Package\Update Transaction (Action 2)\Conditional Split.Inputs[Conditional Split Input]"
@@ -3917,7 +4713,7 @@ WHERE TransactionId = ?</property>
               startId="Package\Update Transaction (Action 2)\Conditional Split.Outputs[StatusInValid]" />
             <path
               refId="Package\Update Transaction (Action 2).Paths[Success]"
-              endId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]"
+              endId="Package\Update Transaction (Action 2)\Lookup Currency Code.Inputs[Lookup Input]"
               name="Success"
               startId="Package\Update Transaction (Action 2)\Conditional Split.Outputs[Success]" />
             <path
@@ -3959,22 +4755,22 @@ WHERE TransactionId = ?</property>
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib">
         <NodeLayout
           Size="208.8,41.6"
           Id="Package\Insert Transaction (Action 1)"
-          TopLeft="391.666645266943,77.9999994575974" />
-        <NodeLayout
-          Size="216,41.6"
-          Id="Package\Update Transaction (Action 2)"
-          TopLeft="391.666645266945,396.933330573108" />
+          TopLeft="12.999999590217,5.5" />
         <NodeLayout
           Size="225.6,41.6"
           Id="Package\Re-Insert Transaction (Action 2)"
-          TopLeft="384.166645676726,228.799998408953" />
+          TopLeft="5.5,156.299998951356" />
+        <NodeLayout
+          Size="216,41.6"
+          Id="Package\Update Transaction (Action 2)"
+          TopLeft="12.999999590219,324.433331115511" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="496.516645471835,119.599999457597">
+          TopLeft="117.849999795109,47.0999999999996">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -3996,7 +4792,7 @@ WHERE TransactionId = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="498.316645471835,270.399998408953">
+          TopLeft="119.649999795109,197.899998951356">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -4016,6 +4812,23 @@ WHERE TransactionId = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <GroupLayout
+          Text="Transfer Transaction"
+          ParentId="Package"
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="236,420.8"
+          Size="236,464"
+          Id="8733d295-343c-4067-8fd0-2577dce7b268"
+          TopLeft="637.833298183151,96.4999993671974">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\Insert Transaction (Action 1)</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2)</s:String>
+            <s:String>Package\Update Transaction (Action 2)</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint]</s:String>
+            <s:String>Package.PrecedenceConstraints[Constraint 1]</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -4023,145 +4836,113 @@ WHERE TransactionId = ?</property>
     design-time-name="Package\Insert Transaction (Action 1)">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:s="clr-namespace:System;assembly=mscorlib">
         <NodeLayout
           Size="153.6,41.6"
           Id="Package\Insert Transaction (Action 1)\Conditional Split"
-          TopLeft="553.333303100534,150.999999150236" />
+          TopLeft="423.666665634347,98.9666664951373" />
         <NodeLayout
           Size="180.8,41.6"
           Id="Package\Insert Transaction (Action 1)\Currency Code Invalid"
-          TopLeft="684.16662928545,444.599996908307" />
+          TopLeft="5.5,347.56666492376" />
         <NodeLayout
           Size="176,41.6"
           Id="Package\Insert Transaction (Action 1)\Status Invalid"
-          TopLeft="885.833284933536,277.333331404792" />
-        <NodeLayout
-          Size="167.2,41.6"
-          Id="Package\Insert Transaction (Action 1)\OLE DB Command"
-          TopLeft="106.666660838657,147.333332308796" />
+          TopLeft="729.16664786968,102.300000582536" />
         <NodeLayout
           Size="167.2,41.6"
           Id="Package\Insert Transaction (Action 1)\Transaction Id Invalid"
-          TopLeft="140.833325638539,425.533330374228" />
+          TopLeft="439.166681794655,229.499999864896" />
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Insert Transaction (Action 1)\OLE DB Command"
+          TopLeft="250.000019304453,349.299995868802" />
+        <NodeLayout
+          Size="161.6,41.6"
+          Id="Package\Insert Transaction (Action 1)\Update IsTransfer"
+          TopLeft="248.333356901174,448.96665987942" />
         <NodeLayout
           Size="152,41.6"
           Id="Package\Insert Transaction (Action 1)\OLE DB Source"
-          TopLeft="549.999969949326,22.5333331766393" />
+          TopLeft="428.33333236393,5.5" />
         <NodeLayout
           Size="164.8,41.6"
           Id="Package\Insert Transaction (Action 1)\Account No Invalid"
-          TopLeft="434.166642944847,448.933330211507" />
+          TopLeft="705.499999503294,228.900000059803" />
         <EdgeLayout
           Id="Package\Insert Transaction (Action 1).Paths[TransactionIdInValid]"
-          TopLeft="586.453303100534,192.599999150236">
+          TopLeft="476.19999896768,140.566666495137">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-362.019977461994,232.933331223992"
+              EndConnector="46.5666828269749,88.9333333697591"
               Start="0,0"
-              End="-362.019977461994,225.433331223992">
+              End="46.5666828269749,81.4333333697591">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,66.1851522028622" />
+                    End="0,32.1234364409125" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,66.1851522028622"
-                    Point2="0,70.1851522028622"
-                    Point3="-4,70.1851522028622" />
+                    Point1="0,32.1234364409125"
+                    Point2="0,36.1234364409125"
+                    Point3="4,36.1234364409125" />
                   <mssgle:LineSegment
-                    End="-358.019977461994,70.1851522028622" />
+                    End="42.5666828269749,36.1234364409125" />
                   <mssgle:CubicBezierSegment
-                    Point1="-358.019977461994,70.1851522028622"
-                    Point2="-362.019977461994,70.1851522028622"
-                    Point3="-362.019977461994,74.1851522028622" />
+                    Point1="42.5666828269749,36.1234364409125"
+                    Point2="46.5666828269749,36.1234364409125"
+                    Point3="46.5666828269749,40.1234364409125" />
                   <mssgle:LineSegment
-                    End="-362.019977461994,225.433331223992" />
+                    End="46.5666828269749,81.4333333697591" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-227.244070762247,75.1851522028622,92.4681640625,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Insert Transaction (Action 1).Paths[Success]"
-          TopLeft="553.333303100534,169.966665729516">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-279.466642261877,0"
-              Start="0,0"
-              End="-271.966642261877,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-271.966642261877,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-153.976563318438,5,35.986484375,9.5537109375"
+              BoundingBox="-22.9507406177626,41.1234364409125,92.4681640625,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Insert Transaction (Action 1).Paths[StatusInValid]"
-          TopLeft="673.813303100534,192.599999150236">
+          TopLeft="577.266665634347,121.433333538837">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="300.019981833002,84.7333322545559"
+              EndConnector="151.899982235333,0"
               Start="0,0"
-              End="300.019981833002,77.2333322545559">
+              End="144.399982235333,0">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.5310040417657" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,21.5310040417657"
-                    Point2="0,25.5310040417657"
-                    Point3="4,25.5310040417657" />
-                  <mssgle:LineSegment
-                    End="296.019981833002,25.5310040417657" />
-                  <mssgle:CubicBezierSegment
-                    Point1="296.019981833002,25.5310040417657"
-                    Point2="300.019981833002,25.5310040417657"
-                    Point3="300.019981833002,29.5310040417657" />
-                  <mssgle:LineSegment
-                    End="300.019981833002,77.2333322545559" />
+                    End="144.399982235333,0" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="120.441338572751,30.5310040417657,59.1373046875,9.7490234375"
+              BoundingBox="42.6313387739166,5,59.1373046875,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Insert Transaction (Action 1).Paths[OLE DB Source Output]"
-          TopLeft="628.06663652493,64.1333331766393">
+          TopLeft="502.399998999138,47.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,86.8666659735967"
+              EndConnector="0,51.8666664951374"
               Start="0,0"
-              End="0,79.3666659735967">
+              End="0,44.3666664951374">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,79.3666659735967" />
+                    End="0,44.3666664951374" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4171,115 +4952,204 @@ WHERE TransactionId = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Insert Transaction (Action 1).Paths[CurrencyInCodeInValid]"
-          TopLeft="644.693303100534,192.599999150236">
+          Id="Package\Insert Transaction (Action 1).Paths[OLE DB Command Output]"
+          TopLeft="331.366688102813,390.899995868802">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="129.873326184916,251.999997758071"
+              EndConnector="0,58.0666640106173"
               Start="0,0"
-              End="129.873326184916,244.499997758071">
+              End="0,50.5666640106173">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,108.805522586754" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,108.805522586754"
-                    Point2="0,112.805522586754"
-                    Point3="4,112.805522586754" />
-                  <mssgle:LineSegment
-                    End="125.873326184916,112.805522586754" />
-                  <mssgle:CubicBezierSegment
-                    Point1="125.873326184916,112.805522586754"
-                    Point2="129.873326184916,112.805522586754"
-                    Point3="129.873326184916,116.805522586754" />
-                  <mssgle:LineSegment
-                    End="129.873326184916,244.499997758071" />
+                    End="0,50.5666640106173" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="13.7311552799578,117.805522586754,102.411015625,11.609375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Insert Transaction (Action 1).Paths[AccountNoInValid]"
-          TopLeft="615.573303100534,192.599999150236">
+          TopLeft="524.733332301014,140.566666495137">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-99.006660155687,256.333331061271"
+              EndConnector="263.166667202281,88.3333335646659"
               Start="0,0"
-              End="-99.006660155687,248.833331061271">
+              End="263.166667202281,80.8333335646659">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,110.745300095321" />
+                    End="0,31.8797251798746" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,110.745300095321"
-                    Point2="0,114.745300095321"
-                    Point3="-4,114.745300095321" />
+                    Point1="0,31.8797251798746"
+                    Point2="0,35.8797251798746"
+                    Point3="4,35.8797251798746" />
                   <mssgle:LineSegment
-                    End="-95.006660155687,114.745300095321" />
+                    End="259.166667202281,35.8797251798746" />
                   <mssgle:CubicBezierSegment
-                    Point1="-95.006660155687,114.745300095321"
-                    Point2="-99.006660155687,114.745300095321"
-                    Point3="-99.006660155687,118.745300095321" />
+                    Point1="259.166667202281,35.8797251798746"
+                    Point2="263.166667202281,35.8797251798746"
+                    Point3="263.166667202281,39.8797251798746" />
                   <mssgle:LineSegment
-                    End="-99.006660155687,248.833331061271" />
+                    End="263.166667202281,80.8333335646659" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-89.1393847653435,119.745300095321,79.272109375,9.7490234375"
+              BoundingBox="91.9472789136404,40.8797251798746,79.272109375,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="161.6,41.6"
-          Id="Package\Insert Transaction (Action 1)\Update IsTransfer"
-          TopLeft="13.9999997913838,261.999996095896" />
+          Size="184.8,41.6"
+          Id="Package\Insert Transaction (Action 1)\Lookup Currency Code"
+          TopLeft="133.333358614807,226.966663187477" />
         <EdgeLayout
-          Id="Package\Insert Transaction (Action 1).Paths[OLE DB Command Output]"
-          TopLeft="190.266660838657,188.933332308796">
+          Id="Package\Insert Transaction (Action 1).Paths[Success]"
+          TopLeft="464.066665634347,140.566666495137">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-95.4666610472732,73.0666637870997"
+              EndConnector="-208.866640352873,86.3999966923401"
               Start="0,0"
-              End="-95.4666610472732,65.5666637870997">
+              End="-208.866640352873,78.8999966923401">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,32.5333318935498" />
+                    End="0,33.6510267810192" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,32.5333318935498"
-                    Point2="0,36.5333318935498"
-                    Point3="-4,36.5333318935498" />
+                    Point1="0,33.6510267810192"
+                    Point2="0,37.6510267810192"
+                    Point3="-4,37.6510267810192" />
                   <mssgle:LineSegment
-                    End="-91.4666610472732,36.5333318935498" />
+                    End="-204.866640352873,37.6510267810192" />
                   <mssgle:CubicBezierSegment
-                    Point1="-91.4666610472732,36.5333318935498"
-                    Point2="-95.4666610472732,36.5333318935498"
-                    Point3="-95.4666610472732,40.5333318935498" />
+                    Point1="-204.866640352873,37.6510267810192"
+                    Point2="-208.866640352873,37.6510267810192"
+                    Point3="-208.866640352873,41.6510267810192" />
                   <mssgle:LineSegment
-                    End="-95.4666610472732,65.5666637870997" />
+                    End="-208.866640352873,78.8999966923401" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="-122.426562363936,42.6510267810192,35.986484375,9.5537109375"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert Transaction (Action 1).Paths[Lookup Match Output]"
+          TopLeft="225.733358614807,268.566663187477">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="107.866660689645,80.733332681325"
+              Start="0,0"
+              End="107.866660689645,73.233332681325">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,36.3666663406625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,36.3666663406625"
+                    Point2="0,40.3666663406625"
+                    Point3="4,40.3666663406625" />
+                  <mssgle:LineSegment
+                    End="103.866660689645,40.3666663406625" />
+                  <mssgle:CubicBezierSegment
+                    Point1="103.866660689645,40.3666663406625"
+                    Point2="107.866660689645,40.3666663406625"
+                    Point3="107.866660689645,44.3666663406625" />
+                  <mssgle:LineSegment
+                    End="107.866660689645,73.233332681325" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="5.7419436260727,45.3666663406625,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Insert Transaction (Action 1).Paths[Lookup No Match Output]"
+          TopLeft="196.266691948141,268.566663187477">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-100.366691948141,79.000001736283"
+              Start="0,0"
+              End="-100.366691948141,71.500001736283">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.0068676562452" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.0068676562452"
+                    Point2="0,32.0068676562452"
+                    Point3="-4,32.0068676562452" />
+                  <mssgle:LineSegment
+                    End="-96.3666919481408,32.0068676562452" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-96.3666919481408,32.0068676562452"
+                    Point2="-100.366691948141,32.0068676562452"
+                    Point3="-100.366691948141,36.0068676562452" />
+                  <mssgle:LineSegment
+                    End="-100.366691948141,71.500001736283" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-105.98973269282,37.0068676562452,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <GroupLayout
+          Text="Insert Transaction"
+          ParentId="Package\Insert Transaction (Action 1)"
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="910.4,545.6"
+          Size="910.4,588.8"
+          Id="ee18b76a-b223-4373-bd14-418506754c9b"
+          TopLeft="354.33330078506,9.6666666045785">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\Insert Transaction (Action 1)\Conditional Split</s:String>
+            <s:String>Package\Insert Transaction (Action 1)\Currency Code Invalid</s:String>
+            <s:String>Package\Insert Transaction (Action 1)\Status Invalid</s:String>
+            <s:String>Package\Insert Transaction (Action 1)\Transaction Id Invalid</s:String>
+            <s:String>Package\Insert Transaction (Action 1)\OLE DB Command</s:String>
+            <s:String>Package\Insert Transaction (Action 1)\Update IsTransfer</s:String>
+            <s:String>Package\Insert Transaction (Action 1)\OLE DB Source</s:String>
+            <s:String>Package\Insert Transaction (Action 1)\Account No Invalid</s:String>
+            <s:String>Package\Insert Transaction (Action 1).Paths[TransactionIdInValid]</s:String>
+            <s:String>Package\Insert Transaction (Action 1).Paths[StatusInValid]</s:String>
+            <s:String>Package\Insert Transaction (Action 1).Paths[OLE DB Source Output]</s:String>
+            <s:String>Package\Insert Transaction (Action 1).Paths[OLE DB Command Output]</s:String>
+            <s:String>Package\Insert Transaction (Action 1).Paths[AccountNoInValid]</s:String>
+            <s:String>Package\Insert Transaction (Action 1)\Lookup Currency Code</s:String>
+            <s:String>Package\Insert Transaction (Action 1).Paths[Success]</s:String>
+            <s:String>Package\Insert Transaction (Action 1).Paths[Lookup Match Output]</s:String>
+            <s:String>Package\Insert Transaction (Action 1).Paths[Lookup No Match Output]</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -4297,144 +5167,128 @@ WHERE TransactionId = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <TaskHost
-    design-time-name="Package\Update Transaction (Action 2)">
+    design-time-name="Package\Re-Insert Transaction (Action 2)">
     <LayoutInfo>
       <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="153.6,41.6"
-          Id="Package\Update Transaction (Action 2)\Conditional Split"
-          TopLeft="556.666636251742,150.133332489596" />
-        <NodeLayout
-          Size="180.8,41.6"
-          Id="Package\Update Transaction (Action 2)\Currency Code Invalid"
-          TopLeft="678.499958398443,443.733330041038" />
-        <NodeLayout
-          Size="176,41.6"
-          Id="Package\Update Transaction (Action 2)\Status Invalid"
-          TopLeft="906.999950125816,443.799995205203" />
-        <NodeLayout
-          Size="167.2,41.6"
-          Id="Package\Update Transaction (Action 2)\OLE DB Command"
-          TopLeft="88.3333336727484,157.666664489441" />
-        <NodeLayout
-          Size="167.2,41.6"
-          Id="Package\Update Transaction (Action 2)\Transaction Id Invalid"
-          TopLeft="262.833323820597,444.533330091106" />
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:s="clr-namespace:System;assembly=mscorlib">
         <NodeLayout
           Size="152,41.6"
-          Id="Package\Update Transaction (Action 2)\OLE DB Source"
-          TopLeft="549.999969949326,22.5333331766393" />
+          Id="Package\Re-Insert Transaction (Action 2)\OLE DB Source"
+          TopLeft="494.499977812172,5.5" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Re-Insert Transaction (Action 2)\Conditional Split"
+          TopLeft="499.166643747026,92.2999994456764" />
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Re-Insert Transaction (Action 2)\Transaction Id Invalid"
+          TopLeft="332.333324853745,217.766665039593" />
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\Re-Insert Transaction (Action 2)\Currency Code Invalid"
+          TopLeft="5.5,358.233330673841" />
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Re-Insert Transaction (Action 2)\OLE DB Command"
+          TopLeft="262.833328770267,358.099996316234" />
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\Re-Insert Transaction (Action 2)\Status Invalid"
+          TopLeft="836.499958808225,218.76666347497" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Re-Insert Transaction (Action 2)\Update Remark"
+          TopLeft="264.499992961686,439.833328032163" />
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\Re-Insert Transaction (Action 2)\Account No Invalid"
+          TopLeft="650.499988004566,217.699995019635" />
         <EdgeLayout
-          Id="Package\Update Transaction (Action 2).Paths[TransactionIdInValid]"
-          TopLeft="589.786636251742,191.733332489596">
+          Id="Package\Re-Insert Transaction (Action 2).Paths[TransactionIdInValid]"
+          TopLeft="561.406643747026,133.899999445676">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-243.353312431145,252.79999760151"
+              EndConnector="-145.473318893281,83.8666655939162"
               Start="0,0"
-              End="-243.353312431145,245.29999760151">
+              End="-145.473318893281,76.3666655939162">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,72.1711783166122" />
+                    End="0,33.5421552543538" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,72.1711783166122"
-                    Point2="0,76.1711783166122"
-                    Point3="-4,76.1711783166122" />
+                    Point1="0,33.5421552543538"
+                    Point2="0,37.5421552543538"
+                    Point3="-4,37.5421552543538" />
                   <mssgle:LineSegment
-                    End="-239.353312431145,76.1711783166122" />
+                    End="-141.473318893281,37.5421552543538" />
                   <mssgle:CubicBezierSegment
-                    Point1="-239.353312431145,76.1711783166122"
-                    Point2="-243.353312431145,76.1711783166122"
-                    Point3="-243.353312431145,80.1711783166122" />
+                    Point1="-141.473318893281,37.5421552543538"
+                    Point2="-145.473318893281,37.5421552543538"
+                    Point3="-145.473318893281,41.5421552543538" />
                   <mssgle:LineSegment
-                    End="-243.353312431145,245.29999760151" />
+                    End="-145.473318893281,76.3666655939162" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-167.910738246822,81.1711783166122,92.4681640625,9.7490234375"
+              BoundingBox="-118.970741477891,42.5421552543538,92.4681640625,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Update Transaction (Action 2).Paths[Success]"
-          TopLeft="556.666636251742,174.699998489519">
+          Id="Package\Re-Insert Transaction (Action 2).Paths[StatusInValid]"
+          TopLeft="619.646643747026,133.899999445676">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-301.133302578994,0"
+              EndConnector="287.253315061199,84.8666640292933"
               Start="0,0"
-              End="-293.633302578994,0">
+              End="287.253315061199,77.3666640292933">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-293.633302578994,0" />
+                    End="0,21.5711782446342" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,21.5711782446342"
+                    Point2="0,25.5711782446342"
+                    Point3="4,25.5711782446342" />
+                  <mssgle:LineSegment
+                    End="283.253315061199,25.5711782446342" />
+                  <mssgle:CubicBezierSegment
+                    Point1="283.253315061199,25.5711782446342"
+                    Point2="287.253315061199,25.5711782446342"
+                    Point3="287.253315061199,29.5711782446342" />
+                  <mssgle:LineSegment
+                    End="287.253315061199,77.3666640292933" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-164.809893476997,5,35.986484375,9.5537109375"
+              BoundingBox="114.058005186849,30.5711782446342,59.1373046875,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Update Transaction (Action 2).Paths[StatusInValid]"
-          TopLeft="677.146636251742,191.733332489596">
+          Id="Package\Re-Insert Transaction (Action 2).Paths[OLE DB Source Output]"
+          TopLeft="573.233310779599,47.1">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="317.853313874074,252.066662715607"
+              EndConnector="0,45.1999994456764"
               Start="0,0"
-              End="317.853313874074,244.566662715607">
+              End="0,37.6999994456764">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,71.9502171501174" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,71.9502171501174"
-                    Point2="0,75.9502171501174"
-                    Point3="4,75.9502171501174" />
-                  <mssgle:LineSegment
-                    End="313.853313874074,75.9502171501174" />
-                  <mssgle:CubicBezierSegment
-                    Point1="313.853313874074,75.9502171501174"
-                    Point2="317.853313874074,75.9502171501174"
-                    Point3="317.853313874074,79.9502171501174" />
-                  <mssgle:LineSegment
-                    End="317.853313874074,244.566662715607" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="129.358004593287,80.9502171501174,59.1373046875,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Update Transaction (Action 2).Paths[OLE DB Source Output]"
-          TopLeft="629.733303100534,64.1333331766393">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,85.9999993129568"
-              Start="0,0"
-              End="0,78.4999993129568">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,78.4999993129568" />
+                    End="0,37.6999994456764" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4444,81 +5298,563 @@ WHERE TransactionId = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Update Transaction (Action 2).Paths[CurrencyInCodeInValid]"
-          TopLeft="648.026636251742,191.733332489596">
+          Id="Package\Re-Insert Transaction (Action 2).Paths[OLE DB Command Output]"
+          TopLeft="349.466660865976,399.699996316234">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="120.873322146701,251.999997551442"
+              EndConnector="0,40.1333317159289"
               Start="0,0"
-              End="120.873322146701,244.499997551442">
+              End="0,32.6333317159289">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,108.805522494259" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,108.805522494259"
-                    Point2="0,112.805522494259"
-                    Point3="4,112.805522494259" />
+                    End="0,32.6333317159289" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Re-Insert Transaction (Action 2).Paths[AccountNoInValid]"
+          TopLeft="575.966643747026,133.899999445676">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="156.93334425754,83.7999955739583"
+              Start="0,0"
+              End="156.93334425754,76.2999955739583">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
                   <mssgle:LineSegment
-                    End="116.873322146701,112.805522494259" />
+                    End="0,37.8999977869792" />
                   <mssgle:CubicBezierSegment
-                    Point1="116.873322146701,112.805522494259"
-                    Point2="120.873322146701,112.805522494259"
-                    Point3="120.873322146701,116.805522494259" />
+                    Point1="0,37.8999977869792"
+                    Point2="0,41.8999977869792"
+                    Point3="4,41.8999977869792" />
                   <mssgle:LineSegment
-                    End="120.873322146701,244.499997551442" />
+                    End="152.93334425754,41.8999977869792" />
+                  <mssgle:CubicBezierSegment
+                    Point1="152.93334425754,41.8999977869792"
+                    Point2="156.93334425754,41.8999977869792"
+                    Point3="156.93334425754,45.8999977869792" />
+                  <mssgle:LineSegment
+                    End="156.93334425754,76.2999955739583" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="9.23115326085048,117.805522494259,102.411015625,11.609375"
+              BoundingBox="38.8306174412699,46.8999977869792,79.272109375,9.7490234375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="176,41.6"
-          Id="Package\Update Transaction (Action 2)\OLE DB Command 1"
-          TopLeft="484.166640212967,448.933330211507" />
+          Size="184.8,41.6"
+          Id="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code"
+          TopLeft="128.66666446709,218.699998517434" />
         <EdgeLayout
-          Id="Package\Update Transaction (Action 2).Paths[AccountNoInValid]"
-          TopLeft="618.906636251742,191.733332489596">
+          Id="Package\Re-Insert Transaction (Action 2).Paths[Success]"
+          TopLeft="532.286643747026,133.899999445676">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-46.7399960387746,257.199997721911"
+              EndConnector="-311.219979279936,84.7999990717573"
               Start="0,0"
-              End="-46.7399960387746,249.699997721911">
+              End="-311.219979279936,77.2999990717573">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,111.133255597035" />
+                    End="0,21.551091423368" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,111.133255597035"
-                    Point2="0,115.133255597035"
-                    Point3="-4,115.133255597035" />
+                    Point1="0,21.551091423368"
+                    Point2="0,25.551091423368"
+                    Point3="-4,25.551091423368" />
                   <mssgle:LineSegment
-                    End="-42.7399960387746,115.133255597035" />
+                    End="-307.219979279936,25.551091423368" />
                   <mssgle:CubicBezierSegment
-                    Point1="-42.7399960387746,115.133255597035"
-                    Point2="-46.7399960387746,115.133255597035"
-                    Point3="-46.7399960387746,119.133255597035" />
+                    Point1="-307.219979279936,25.551091423368"
+                    Point2="-311.219979279936,25.551091423368"
+                    Point3="-311.219979279936,29.551091423368" />
                   <mssgle:LineSegment
-                    End="-46.7399960387746,249.699997721911" />
+                    End="-311.219979279936,77.2999990717573" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-63.0060527068873,120.133255597035,79.272109375,9.7490234375"
+              BoundingBox="-173.603231827468,30.551091423368,35.986484375,9.5537109375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Re-Insert Transaction (Action 2).Paths[Lookup No Match Output]"
+          TopLeft="191.599997800423,260.299998517434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-95.6999978004234,97.933332156407"
+              Start="0,0"
+              End="-95.6999978004234,90.433332156407">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.6777105389048" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.6777105389048"
+                    Point2="0,39.6777105389048"
+                    Point3="-4,39.6777105389048" />
+                  <mssgle:LineSegment
+                    End="-91.6999978004234,39.6777105389048" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-91.6999978004234,39.6777105389048"
+                    Point2="-95.6999978004234,39.6777105389048"
+                    Point3="-95.6999978004234,43.6777105389048" />
+                  <mssgle:LineSegment
+                    End="-95.6999978004234,90.433332156407" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-103.656385618962,44.6777105389048,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Re-Insert Transaction (Action 2).Paths[Lookup Match Output]"
+          TopLeft="250.533331133757,260.299998517434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="95.8999976365102,97.7999977988001"
+              Start="0,0"
+              End="95.8999976365102,90.2999977988001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.6236900953079" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.6236900953079"
+                    Point2="0,39.6236900953079"
+                    Point3="4,39.6236900953079" />
+                  <mssgle:LineSegment
+                    End="91.8999976365102,39.6236900953079" />
+                  <mssgle:CubicBezierSegment
+                    Point1="91.8999976365102,39.6236900953079"
+                    Point2="95.8999976365102,39.6236900953079"
+                    Point3="95.8999976365102,43.6236900953079" />
+                  <mssgle:LineSegment
+                    End="95.8999976365102,90.2999977988001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-0.241387900494907,44.6236900953079,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <GroupLayout
+          Text="Re-Insert Transaction"
+          ParentId="Package\Re-Insert Transaction (Action 2)"
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="982.4,536.8"
+          Size="982.4,580"
+          Id="1ba3e404-5042-4005-b090-fbb3d51c6f30"
+          TopLeft="327.166643960609,21.9666665521595">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\Re-Insert Transaction (Action 2)\OLE DB Source</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2)\Conditional Split</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2)\Transaction Id Invalid</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2)\Currency Code Invalid</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2)\OLE DB Command</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2)\Status Invalid</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2)\Update Remark</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2)\Account No Invalid</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2).Paths[TransactionIdInValid]</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2).Paths[StatusInValid]</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2).Paths[OLE DB Source Output]</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2).Paths[OLE DB Command Output]</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2).Paths[AccountNoInValid]</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2)\Lookup Currency Code</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2).Paths[Success]</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2).Paths[Lookup No Match Output]</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2).Paths[Lookup Match Output]</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Re-Insert Transaction (Action 2)\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Update Transaction (Action 2)">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:s="clr-namespace:System;assembly=mscorlib">
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Update Transaction (Action 2)\OLE DB Command"
+          TopLeft="208.000004234414,498.360598709523" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Update Transaction (Action 2)\Status Invalid"
+          TopLeft="898.757531684384,265.13030080077" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Update Transaction (Action 2)\OLE DB Command 1"
+          TopLeft="678.651491477936,265.718181329352" />
+        <NodeLayout
+          Size="167.2,41.6"
+          Id="Package\Update Transaction (Action 2)\Transaction Id Invalid"
+          TopLeft="5.5,273.136362851028" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Update Transaction (Action 2)\OLE DB Source"
+          TopLeft="428.303007743953,5.5" />
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\Update Transaction (Action 2)\Conditional Split"
+          TopLeft="432.060583180627,110.554545103456" />
+        <NodeLayout
+          Size="180.8,41.6"
+          Id="Package\Update Transaction (Action 2)\Currency Code Invalid"
+          TopLeft="504.621178788822,391.972724654603" />
+        <EdgeLayout
+          Id="Package\Update Transaction (Action 2).Paths[TransactionIdInValid]"
+          TopLeft="465.180583180627,152.154545103456">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-376.080583180627,120.981817747572"
+              Start="0,0"
+              End="-376.080583180627,113.481817747572">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.4530367885698" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.4530367885698"
+                    Point2="0,36.4530367885698"
+                    Point3="-4,36.4530367885698" />
+                  <mssgle:LineSegment
+                    End="-372.080583180627,36.4530367885698" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-372.080583180627,36.4530367885698"
+                    Point2="-376.080583180627,36.4530367885698"
+                    Point3="-376.080583180627,40.4530367885698" />
+                  <mssgle:LineSegment
+                    End="-376.080583180627,113.481817747572" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-234.274373621564,41.4530367885698,92.4681640625,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update Transaction (Action 2).Paths[StatusInValid]"
+          TopLeft="545.260583180627,152.154545103456">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="441.496948503757,112.975755697314"
+              Start="0,0"
+              End="441.496948503757,105.475755697314">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.9438611789375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34.9438611789375"
+                    Point2="0,38.9438611789375"
+                    Point3="4,38.9438611789375" />
+                  <mssgle:LineSegment
+                    End="437.496948503757,38.9438611789375" />
+                  <mssgle:CubicBezierSegment
+                    Point1="437.496948503757,38.9438611789375"
+                    Point2="441.496948503757,38.9438611789375"
+                    Point3="441.496948503757,42.9438611789375" />
+                  <mssgle:LineSegment
+                    End="441.496948503757,105.475755697314" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="191.179821908128,43.9438611789375,59.1373046875,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update Transaction (Action 2).Paths[OLE DB Source Output]"
+          TopLeft="506.58179546229,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,63.4545451034556"
+              Start="0,0"
+              End="0,55.9545451034556">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,55.9545451034556" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update Transaction (Action 2).Paths[AccountNoInValid]"
+          TopLeft="508.860583180627,152.154545103456">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="257.790908297309,113.563636225896"
+              Start="0,0"
+              End="257.790908297309,106.063636225896">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.781818112948" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,52.781818112948"
+                    Point2="0,56.781818112948"
+                    Point3="4,56.781818112948" />
+                  <mssgle:LineSegment
+                    End="253.790908297309,56.781818112948" />
+                  <mssgle:CubicBezierSegment
+                    Point1="253.790908297309,56.781818112948"
+                    Point2="257.790908297309,56.781818112948"
+                    Point3="257.790908297309,60.781818112948" />
+                  <mssgle:LineSegment
+                    End="257.790908297309,106.063636225896" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="89.2593994611545,61.781818112948,79.272109375,9.7490234375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="184.8,41.6"
+          Id="Package\Update Transaction (Action 2)\Compare with main DB"
+          TopLeft="204.666669295067,398.60302426626" />
+        <EdgeLayout
+          Id="Package\Update Transaction (Action 2).Paths[Lookup No Match Output]"
+          TopLeft="294.33333676474,440.20302426626">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,58.1575744432632"
+              Start="0,0"
+              End="0,50.6575744432632">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.6575744432632" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,19.5240997216316,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Update Transaction (Action 2)\Update Remark"
+          TopLeft="208.333335907096,588.012112352936" />
+        <EdgeLayout
+          Id="Package\Update Transaction (Action 2).Paths[OLE DB Command Output]"
+          TopLeft="287.766670070755,539.960598709523">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,48.0515136434126"
+              Start="0,0"
+              End="0,40.5515136434126">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5515136434126" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="184.8,41.6"
+          Id="Package\Update Transaction (Action 2)\Lookup Currency Code"
+          TopLeft="234.212123400259,273.057571591578" />
+        <EdgeLayout
+          Id="Package\Update Transaction (Action 2).Paths[Success]"
+          TopLeft="494.300583180627,152.154545103456">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-167.688459780368,120.903026488123"
+              Start="0,0"
+              End="-167.688459780368,113.403026488123">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.1211476454313" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,50.1211476454313"
+                    Point2="0,54.1211476454313"
+                    Point3="-4,54.1211476454313" />
+                  <mssgle:LineSegment
+                    End="-163.688459780368,54.1211476454313" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-163.688459780368,54.1211476454313"
+                    Point2="-167.688459780368,54.1211476454313"
+                    Point3="-167.688459780368,58.1211476454313" />
+                  <mssgle:LineSegment
+                    End="-167.688459780368,113.403026488123" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-101.837472077684,59.1211476454313,35.986484375,9.5537109375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update Transaction (Action 2).Paths[Lookup No Match Output1]"
+          TopLeft="356.078790066926,314.657571591578">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="238.942388721896,77.3151530630241"
+              Start="0,0"
+              End="238.942388721896,69.8151530630241">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,27.3242508547188" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,27.3242508547188"
+                    Point2="0,31.3242508547188"
+                    Point3="4,31.3242508547188" />
+                  <mssgle:LineSegment
+                    End="234.942388721896,31.3242508547188" />
+                  <mssgle:CubicBezierSegment
+                    Point1="234.942388721896,31.3242508547188"
+                    Point2="238.942388721896,31.3242508547188"
+                    Point3="238.942388721896,35.3242508547188" />
+                  <mssgle:LineSegment
+                    End="238.942388721896,69.8151530630241" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="63.6648076421978,36.3242508547188,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Update Transaction (Action 2).Paths[Lookup Match Output]"
+          TopLeft="297.10606301433,314.657571591578">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,83.9454526746812"
+              Start="0,0"
+              End="0,76.4454526746812">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,76.4454526746812" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,32.4180388373406,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <GroupLayout
+          Text="Update Transaction"
+          ParentId="Package\Update Transaction (Action 2)"
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="1080,684.8"
+          Size="1080,728"
+          Id="4428ba84-2391-4b9a-9aa1-c087721a7cd5"
+          TopLeft="403.242412555473,5.5">
+          <GroupLayout.ChildrenIds>
+            <s:String>Package\Update Transaction (Action 2)\OLE DB Command</s:String>
+            <s:String>Package\Update Transaction (Action 2)\Status Invalid</s:String>
+            <s:String>Package\Update Transaction (Action 2)\OLE DB Command 1</s:String>
+            <s:String>Package\Update Transaction (Action 2)\Transaction Id Invalid</s:String>
+            <s:String>Package\Update Transaction (Action 2)\OLE DB Source</s:String>
+            <s:String>Package\Update Transaction (Action 2)\Conditional Split</s:String>
+            <s:String>Package\Update Transaction (Action 2)\Currency Code Invalid</s:String>
+            <s:String>Package\Update Transaction (Action 2).Paths[TransactionIdInValid]</s:String>
+            <s:String>Package\Update Transaction (Action 2).Paths[StatusInValid]</s:String>
+            <s:String>Package\Update Transaction (Action 2).Paths[OLE DB Source Output]</s:String>
+            <s:String>Package\Update Transaction (Action 2).Paths[AccountNoInValid]</s:String>
+            <s:String>Package\Update Transaction (Action 2)\Compare with main DB</s:String>
+            <s:String>Package\Update Transaction (Action 2).Paths[Lookup No Match Output]</s:String>
+            <s:String>Package\Update Transaction (Action 2)\Update Remark</s:String>
+            <s:String>Package\Update Transaction (Action 2).Paths[OLE DB Command Output]</s:String>
+            <s:String>Package\Update Transaction (Action 2)\Lookup Currency Code</s:String>
+            <s:String>Package\Update Transaction (Action 2).Paths[Success]</s:String>
+            <s:String>Package\Update Transaction (Action 2).Paths[Lookup No Match Output1]</s:String>
+            <s:String>Package\Update Transaction (Action 2).Paths[Lookup Match Output]</s:String>
+          </GroupLayout.ChildrenIds>
+        </GroupLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
@@ -4530,273 +5866,93 @@ WHERE TransactionId = ?</property>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
-  <TaskHost
-    design-time-name="Package\Re-Insert Transaction (Action 2)">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
-        <NodeLayout
-          Size="153.6,41.6"
-          Id="Package\Re-Insert Transaction (Action 2)\Conditional Split"
-          TopLeft="544.666636430556,169.133332206474" />
-        <NodeLayout
-          Size="180.8,41.6"
-          Id="Package\Re-Insert Transaction (Action 2)\Currency Code Invalid"
-          TopLeft="678.499958398443,443.733330041038" />
-        <NodeLayout
-          Size="176,41.6"
-          Id="Package\Re-Insert Transaction (Action 2)\Status Invalid"
-          TopLeft="906.999950125816,443.799995205203" />
-        <NodeLayout
-          Size="167.2,41.6"
-          Id="Package\Re-Insert Transaction (Action 2)\OLE DB Command"
-          TopLeft="83.3333337472542,176.666664206319" />
-        <NodeLayout
-          Size="167.2,41.6"
-          Id="Package\Re-Insert Transaction (Action 2)\Transaction Id Invalid"
-          TopLeft="262.833323820597,444.533330091106" />
-        <NodeLayout
-          Size="152,41.6"
-          Id="Package\Re-Insert Transaction (Action 2)\OLE DB Source"
-          TopLeft="549.999969949326,22.5333331766393" />
-        <EdgeLayout
-          Id="Package\Re-Insert Transaction (Action 2).Paths[TransactionIdInValid]"
-          TopLeft="577.786636430556,210.733332206474">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-231.353312609959,233.799997884632"
-              Start="0,0"
-              End="-231.353312609959,226.299997884632">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,66.4462875722254" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,66.4462875722254"
-                    Point2="0,70.4462875722254"
-                    Point3="-4,70.4462875722254" />
-                  <mssgle:LineSegment
-                    End="-227.353312609959,70.4462875722254" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-227.353312609959,70.4462875722254"
-                    Point2="-231.353312609959,70.4462875722254"
-                    Point3="-231.353312609959,74.4462875722254" />
-                  <mssgle:LineSegment
-                    End="-231.353312609959,226.299997884632" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-161.910738336229,75.4462875722254,92.4681640625,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Re-Insert Transaction (Action 2).Paths[Success]"
-          TopLeft="544.666636430556,193.699998206396">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-294.133302683302,0"
-              Start="0,0"
-              End="-286.633302683302,0">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="-286.633302683302,0" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-161.309893529151,5,35.986484375,9.5537109375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Re-Insert Transaction (Action 2).Paths[StatusInValid]"
-          TopLeft="665.146636430556,210.733332206474">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="329.85331369526,233.066662998729"
-              Start="0,0"
-              End="329.85331369526,225.566662998729">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,66.2253264057305" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,66.2253264057305"
-                    Point2="0,70.2253264057305"
-                    Point3="4,70.2253264057305" />
-                  <mssgle:LineSegment
-                    End="325.85331369526,70.2253264057305" />
-                  <mssgle:CubicBezierSegment
-                    Point1="325.85331369526,70.2253264057305"
-                    Point2="329.85331369526,70.2253264057305"
-                    Point3="329.85331369526,74.2253264057305" />
-                  <mssgle:LineSegment
-                    End="329.85331369526,225.566662998729" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="135.35800450388,75.2253264057305,59.1373046875,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Re-Insert Transaction (Action 2).Paths[OLE DB Source Output]"
-          TopLeft="623.733303189941,64.1333331766393">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,104.999999029835"
-              Start="0,0"
-              End="0,97.4999990298347">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,97.4999990298347" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Re-Insert Transaction (Action 2).Paths[CurrencyInCodeInValid]"
-          TopLeft="636.026636430556,210.733332206474">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="132.873321967887,232.999997834564"
-              Start="0,0"
-              End="132.873321967887,225.499997834564">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,100.300344255058" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,100.300344255058"
-                    Point2="0,104.300344255058"
-                    Point3="4,104.300344255058" />
-                  <mssgle:LineSegment
-                    End="128.873321967887,104.300344255058" />
-                  <mssgle:CubicBezierSegment
-                    Point1="128.873321967887,104.300344255058"
-                    Point2="132.873321967887,104.300344255058"
-                    Point3="132.873321967887,108.300344255058" />
-                  <mssgle:LineSegment
-                    End="132.873321967887,225.499997834564" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="15.2311531714436,109.300344255058,102.411015625,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="176,41.6"
-          Id="Package\Re-Insert Transaction (Action 2)\OLE DB Command 1"
-          TopLeft="64.9999990314245,286.999995723367" />
-        <EdgeLayout
-          Id="Package\Re-Insert Transaction (Action 2).Paths[OLE DB Command Output]"
-          TopLeft="166.933333747254,218.266664206319">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-13.9333347158297,68.7333315170477"
-              Start="0,0"
-              End="-13.9333347158297,61.2333315170477">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,30.3666657585238" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,30.3666657585238"
-                    Point2="0,34.3666657585238"
-                    Point3="-4,34.3666657585238" />
-                  <mssgle:LineSegment
-                    End="-9.93333471582974,34.3666657585238" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-9.93333471582974,34.3666657585238"
-                    Point2="-13.9333347158297,34.3666657585238"
-                    Point3="-13.9333347158297,38.3666657585238" />
-                  <mssgle:LineSegment
-                    End="-13.9333347158297,61.2333315170477" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Re-Insert Transaction (Action 2)\Account No Invalid"
-          TopLeft="470.999992981553,440.999993428588" />
-        <EdgeLayout
-          Id="Package\Re-Insert Transaction (Action 2).Paths[AccountNoInValid]"
-          TopLeft="606.906636430556,210.733332206474">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-53.5066434490027,230.266661222114"
-              Start="0,0"
-              End="-53.5066434490027,222.766661222114">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,99.0767908117404" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,99.0767908117404"
-                    Point2="0,103.07679081174"
-                    Point3="-4,103.07679081174" />
-                  <mssgle:LineSegment
-                    End="-49.5066434490027,103.07679081174" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-49.5066434490027,103.07679081174"
-                    Point2="-53.5066434490027,103.07679081174"
-                    Point3="-53.5066434490027,107.07679081174" />
-                  <mssgle:LineSegment
-                    End="-53.5066434490027,222.766661222114" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-66.3893764120014,108.07679081174,79.272109375,9.7490234375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Re-Insert Transaction (Action 2)\OLE DB Source">
+    design-time-name="Package\Update Transaction (Action 2)\Compare with main DB">
     <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[TD_Transactions]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Insert Transaction (Action 1)\Lookup Currency Code">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[TD_CurrencyCodes]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Update Transaction (Action 2)\Lookup Currency Code">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[TD_CurrencyCodes]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[TD_CurrencyCodes]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
       <Property>
         <Name>DataSourceViewID</Name>
       </Property>
