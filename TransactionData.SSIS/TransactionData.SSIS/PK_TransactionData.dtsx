@@ -25,7 +25,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-31TQNV5N\SQLEXPRESS;User ID=@dmin-tp;Initial Catalog=Temp_TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{F340EC91-EF4F-4736-812D-86D4E1519884}LAPTOP-31TQNV5N\SQLEXPRESS.Temp_TransactionDB.@dmin-tp;">
+          DTS:ConnectionString="Data Source=[ServerName];User ID=[UserName];Initial Catalog=Temp_TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{F340EC91-EF4F-4736-812D-86D4E1519884}LAPTOP-31TQNV5N\SQLEXPRESS.Temp_TransactionDB.@dmin-tp;">
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
@@ -42,7 +42,7 @@
         <DTS:ConnectionManager
           DTS:ConnectRetryCount="1"
           DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=LAPTOP-31TQNV5N\SQLEXPRESS;User ID=@dmin-tp;Initial Catalog=TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{BDFDCA2B-A3EA-4962-985D-D1133D5D2C7C}LAPTOP-31TQNV5N\SQLEXPRESS.TransactionDB.@dmin-tp;">
+          DTS:ConnectionString="Data Source=[ServerName];User ID=[UserName];Initial Catalog=TransactionDB;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package-{BDFDCA2B-A3EA-4962-985D-D1133D5D2C7C}LAPTOP-31TQNV5N\SQLEXPRESS.TransactionDB.@dmin-tp;">
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
