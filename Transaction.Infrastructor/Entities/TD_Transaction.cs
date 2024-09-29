@@ -23,5 +23,8 @@ namespace Transaction.Infrastructor.Entities
 
         [MaxLength(10)]
         public string Status { get; set; }
-     }
+
+        public DateTime CreateDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+    }
 }
