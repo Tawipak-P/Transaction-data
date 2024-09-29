@@ -46,7 +46,7 @@ input[type="file"] {
     background-color: #004F6B;
 }
 
-input {
+input, button, a[type="button"] {
     border-radius: 0 !important;
 }
 
