@@ -28,7 +28,8 @@ namespace Transaction.Infrastructor.Repositories
                     SqlDbType = SqlDbType.Structured,
                     TypeName = "dbo.TransactionTableType"
                 };
-                var result = await _tempDbContext.Set<InsertTransactionDataResults>().FromSqlRaw("EXECUTE dbo.SP_InsertTransactionDataFromCSV @DataTable", sqlParam).ToListAsync();
+
+                var result = await _tempDbContext.Database.SqlQueryRaw<InsertTransactionDataResults>("EXECUTE dbo.SP_InsertTransactionDataFromCSV @DataTable", sqlParam).ToListAsync();
 
                 if (result.FirstOrDefault().IsSuccess)
                 {
@@ -37,7 +38,7 @@ namespace Transaction.Infrastructor.Repositories
 
                 return false;
             }
-            catch(Exception ex)
+            catch(SqlException ex)
             {
                 throw ex;
             }
@@ -51,7 +52,8 @@ namespace Transaction.Infrastructor.Repositories
                 {
                     SqlDbType = SqlDbType.Xml,
                 };
-                var result = await _tempDbContext.Set<InsertTransactionDataResults>().FromSqlRaw("EXECUTE dbo.SP_InsertTransactionDataFromXML @XmlInput", sqlParam).ToListAsync();
+
+                var result = await _tempDbContext.Database.SqlQueryRaw<InsertTransactionDataResults>("EXECUTE dbo.SP_InsertTransactionDataFromXML @XmlInput", sqlParam).ToListAsync();
 
                 if (result.FirstOrDefault().IsSuccess)
                 {
@@ -60,7 +62,7 @@ namespace Transaction.Infrastructor.Repositories
 
                 return false;
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 throw ex;
             }

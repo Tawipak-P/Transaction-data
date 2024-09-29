@@ -10,6 +10,5 @@ namespace Transaction.Infrastructor.StoreProcedures
     public class InsertTransactionDataResults
     {
         public bool IsSuccess { get; set; }
-        public string ErrorMessage { get; set; }
     }
 }
