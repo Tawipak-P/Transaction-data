@@ -1,7 +1,7 @@
 USE [TransactionDB]
 GO
 
-/****** Object:  Table [dbo].[TD_CurrencyCodes]    Script Date: 9/29/2024 4:11:44 AM ******/
+/****** Object:  Table [dbo].[TD_CurrencyCodes]    Script Date: 9/29/2024 5:31:40 PM ******/
 SET ANSI_NULLS ON
 GO
 

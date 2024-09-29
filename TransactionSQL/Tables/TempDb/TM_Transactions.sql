@@ -1,7 +1,7 @@
 USE [Temp_TransactionDB]
 GO
 
-/****** Object:  Table [dbo].[TM_Transactions]    Script Date: 9/29/2024 4:10:29 AM ******/
+/****** Object:  Table [dbo].[TM_Transactions]    Script Date: 9/29/2024 5:31:53 PM ******/
 SET ANSI_NULLS ON
 GO
 
