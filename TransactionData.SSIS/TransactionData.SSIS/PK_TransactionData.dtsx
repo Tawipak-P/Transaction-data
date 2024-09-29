@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="TransactionData"
   DTS:PackageType="5"
-  DTS:VersionBuild="255"
-  DTS:VersionGUID="{9F50BE76-105A-479E-AC7C-85FD2A21BB69}">
+  DTS:VersionBuild="267"
+  DTS:VersionGUID="{C8D0B2AB-5C8C-4C7B-9CA3-901D1DE40531}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -29,7 +29,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAUyyEbOf0jpXRl2ocivjXFs0Oplyjg+BGw+svt4KLxbQAAAAAOgAAAAAIAACAAAACVeFTsneNpyiikS35vY9HXtetulPSGpI8vXQAHz8c0FTAAAAB5K71QvPm+gR1KPC9JQRcAYdLUQnGMfET2Kg8I6R39w+Fhb7eIKse+VqcZkMegdOtAAAAAdCBnWDCy+fQzOgoUfj8Iz4ibvQ+91iUrAyxFYooNr32i4P60w0HIb15VJPau0TOny3JxvBLubKjNjs2Eun8EYQ</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACRtRmiUKKSGVGJWxC0CXlcWJzu0s/NwBN+FnvCxxegigAAAAAOgAAAAAIAACAAAACmQSPdi+jsH7v6h+lSXzE2ITwM5cWNaD1/7sSy8RVBxDAAAAA2v4rPJddXSZfHUSsT0jd+tcJwFUYvgilnFCEyXjEGdSpBJBcI2ygeqHd4DWpLVXFAAAAA6HWLSzzkYdjh6DnbrJr602haw5UJ7EORJHTERYklAw175hiXapm6eOU1/QfR9To7G0ylqc24LIBdkPgn4vg/vw</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -46,7 +46,7 @@
           <DTS:Password
             DTS:Name="Password"
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADz+R9HanHR4oToTqE0exe1YzvxBs5eA33imbDoM9wWBAAAAAAOgAAAAAIAACAAAAA/grFitjXoyjYteAViE3hnANWrlWcIZllcxEyvUvNN5jAAAACmFbfqH+yCUkxRWPlb6HI6zFxZ66GFvg6Af6k0XCf/Xrx+xy70q5TMWwIllO28TlZAAAAA332de/lLrWDlTODO/yZqX+23ilSTfxE+ujbifpsFgZoY0anSzf3fMSn1uTvIpgE422AERNsf+d/cbYMIFgPXQw</DTS:Password>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA10yrDTRacUi/ciwrFTHOyAAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABcJttQW8lxQ+jhXqO1HcxJo/94Yz7P3kHM9i0oPQBS1AAAAAAOgAAAAAIAACAAAADgex+0d1KzG6fhNozm6JokXzkodrpX8Jox/3c4zG7iezAAAAAKsP2E3TZ4RWImr7tHCuW3cOxlDsYfUQDroGkYOvBJVvLeBXBqMDIBnI5eRkgkdrVAAAAAxPeS5rQuzC+NxwBTC3u0AxhflUS6L5BtUqz8oFMwj0fXi2wU1SySU+Aw6+l6aMrL4LZUxSL65+pSGaTDn8dpkw</DTS:Password>
         </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -549,6 +549,210 @@ WHERE TransactionId = ?</property>
               </outputs>
             </component>
             <component
+              refId="Package\Insert Transaction (Action 1)\Insert Transaction"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Insert Transaction"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">INSERT INTO [dbo].[TD_Transactions]
+    ( 
+    TransactionId,
+    AccountNo,
+    Amount,
+    CurrencyCode,
+    TransactionDate,
+    Status,
+    CreateDate )
+VALUES
+(?,?,?,?,?,?,GETDATE())</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Insert Transaction (Action 1)\Insert Transaction.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[TransactionDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[TransactionDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].Columns[TransactionId]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TransactionId"
+                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionId]" />
+                    <inputColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].Columns[AccountNo]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="AccountNo"
+                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNo]" />
+                    <inputColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].Columns[Amount]"
+                      cachedDataType="numeric"
+                      cachedName="Amount"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]" />
+                    <inputColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].Columns[CurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CurrencyCode"
+                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
+                    <inputColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].Columns[TransactionDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="TransactionDate"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionDate]" />
+                    <inputColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].Columns[Status]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="30"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="numeric"
+                      name="Param_2"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="wstr"
+                      length="3"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">1073741889</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="dbTimeStamp2"
+                      name="Param_4"
+                      scale="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="wstr"
+                      length="10"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Insert Transaction (Action 1)\Insert Transaction.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Insert Transaction (Action 1)\Insert Transaction.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Insert Transaction (Action 1)\Insert Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Insert Transaction (Action 1)\Insert Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Insert Transaction (Action 1)\Insert Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
               refId="Package\Insert Transaction (Action 1)\Lookup Currency Code"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
@@ -700,210 +904,6 @@ where [refTable].[CurrencyCode] = ?</property>
                       refId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
                       lineageId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Insert Transaction (Action 1)\OLE DB Command"
-              componentClassID="Microsoft.OLEDBCommand"
-              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="OLE DB Command"
-              usesDispositions="true"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">INSERT INTO [dbo].[TD_Transactions]
-    ( 
-    TransactionId,
-    AccountNo,
-    Amount,
-    CurrencyCode,
-    TransactionDate,
-    Status,
-    CreateDate )
-VALUES
-(?,?,?,?,?,?,GETDATE())</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Insert Transaction (Action 1)\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[TransactionDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[TransactionDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input]"
-                  errorOrTruncationOperation="Command Execution"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Command Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].Columns[TransactionId]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="TransactionId"
-                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionId]" />
-                    <inputColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].Columns[AccountNo]"
-                      cachedDataType="wstr"
-                      cachedLength="30"
-                      cachedName="AccountNo"
-                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNo]" />
-                    <inputColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].Columns[Amount]"
-                      cachedDataType="numeric"
-                      cachedName="Amount"
-                      cachedPrecision="18"
-                      cachedScale="2"
-                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]" />
-                    <inputColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].Columns[CurrencyCode]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CurrencyCode"
-                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
-                    <inputColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].Columns[TransactionDate]"
-                      cachedDataType="dbTimeStamp2"
-                      cachedName="TransactionDate"
-                      cachedScale="7"
-                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionDate]" />
-                    <inputColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].Columns[Status]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="Status"
-                      externalMetadataColumnId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      dataType="wstr"
-                      length="50"
-                      name="Param_0">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      dataType="wstr"
-                      length="30"
-                      name="Param_1">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      dataType="numeric"
-                      name="Param_2"
-                      precision="18"
-                      scale="2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      dataType="wstr"
-                      length="3"
-                      name="Param_3">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">1073741889</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      dataType="dbTimeStamp2"
-                      name="Param_4"
-                      scale="7">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      dataType="wstr"
-                      length="10"
-                      name="Param_5">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Insert Transaction (Action 1)\OLE DB Command.Outputs[OLE DB Command Output]"
-                  exclusionGroup="1"
-                  name="OLE DB Command Output"
-                  synchronousInputId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Insert Transaction (Action 1)\OLE DB Command.Outputs[OLE DB Command Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Command Error Output"
-                  synchronousInputId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Insert Transaction (Action 1)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Insert Transaction (Action 1)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1524,7 +1524,7 @@ WHERE TransactionId = ?</property>
               startId="Package\Insert Transaction (Action 1)\Conditional Split.Outputs[AccountNoInValid]" />
             <path
               refId="Package\Insert Transaction (Action 1).Paths[Lookup Match Output]"
-              endId="Package\Insert Transaction (Action 1)\OLE DB Command.Inputs[OLE DB Command Input]"
+              endId="Package\Insert Transaction (Action 1)\Insert Transaction.Inputs[OLE DB Command Input]"
               name="Lookup Match Output"
               startId="Package\Insert Transaction (Action 1)\Lookup Currency Code.Outputs[Lookup Match Output]" />
             <path
@@ -1536,7 +1536,7 @@ WHERE TransactionId = ?</property>
               refId="Package\Insert Transaction (Action 1).Paths[OLE DB Command Output]"
               endId="Package\Insert Transaction (Action 1)\Update IsTransfer.Inputs[OLE DB Command Input]"
               name="OLE DB Command Output"
-              startId="Package\Insert Transaction (Action 1)\OLE DB Command.Outputs[OLE DB Command Output]" />
+              startId="Package\Insert Transaction (Action 1)\Insert Transaction.Outputs[OLE DB Command Output]" />
             <path
               refId="Package\Insert Transaction (Action 1).Paths[OLE DB Source Output]"
               endId="Package\Insert Transaction (Action 1)\Conditional Split.Inputs[Conditional Split Input]"
@@ -2130,210 +2130,6 @@ where [refTable].[CurrencyCode] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command"
-              componentClassID="Microsoft.OLEDBCommand"
-              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="OLE DB Command"
-              usesDispositions="true"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">INSERT INTO [dbo].[TD_Transactions]
-    ( 
-    TransactionId,
-    AccountNo,
-    Amount,
-    CurrencyCode,
-    TransactionDate,
-    Status,
-    CreateDate )
-VALUES
-(?,?,?,?,?,?,GETDATE())</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[TransactionDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[TransactionDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]"
-                  errorOrTruncationOperation="Command Execution"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Command Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[TransactionId]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="TransactionId"
-                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionId]" />
-                    <inputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[AccountNo]"
-                      cachedDataType="wstr"
-                      cachedLength="30"
-                      cachedName="AccountNo"
-                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNo]" />
-                    <inputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[Amount]"
-                      cachedDataType="numeric"
-                      cachedName="Amount"
-                      cachedPrecision="18"
-                      cachedScale="2"
-                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]" />
-                    <inputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[CurrencyCode]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CurrencyCode"
-                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
-                    <inputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[TransactionDate]"
-                      cachedDataType="dbTimeStamp2"
-                      cachedName="TransactionDate"
-                      cachedScale="7"
-                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionDate]" />
-                    <inputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[Status]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="Status"
-                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      dataType="wstr"
-                      length="50"
-                      name="Param_0">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      dataType="wstr"
-                      length="30"
-                      name="Param_1">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      dataType="numeric"
-                      name="Param_2"
-                      precision="18"
-                      scale="2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      dataType="wstr"
-                      length="3"
-                      name="Param_3">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      dataType="dbTimeStamp2"
-                      name="Param_4"
-                      scale="7">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      dataType="wstr"
-                      length="10"
-                      name="Param_5">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Output]"
-                  exclusionGroup="1"
-                  name="OLE DB Command Output"
-                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Command Error Output"
-                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\Re-Insert Transaction (Action 2)\OLE DB Source"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
@@ -2642,6 +2438,210 @@ WHERE Action = 2 AND IsTransfer = 0</property>
                       dataType="i4"
                       lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Action]"
                       name="Action" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Re-Insert Transaction"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">INSERT INTO [dbo].[TD_Transactions]
+    ( 
+    TransactionId,
+    AccountNo,
+    Amount,
+    CurrencyCode,
+    TransactionDate,
+    Status,
+    CreateDate )
+VALUES
+(?,?,?,?,?,?,GETDATE())</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[TransactionDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[TransactionDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].Columns[TransactionId]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TransactionId"
+                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionId]" />
+                    <inputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].Columns[AccountNo]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="AccountNo"
+                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNo]" />
+                    <inputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].Columns[Amount]"
+                      cachedDataType="numeric"
+                      cachedName="Amount"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]" />
+                    <inputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].Columns[CurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CurrencyCode"
+                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
+                    <inputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].Columns[TransactionDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="TransactionDate"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionDate]" />
+                    <inputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].Columns[Status]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="wstr"
+                      length="30"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="numeric"
+                      name="Param_2"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="wstr"
+                      length="3"
+                      name="Param_3">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="dbTimeStamp2"
+                      name="Param_4"
+                      scale="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="wstr"
+                      length="10"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
                   </outputColumns>
                   <externalMetadataColumns />
                 </output>
@@ -2960,7 +2960,7 @@ WHERE TransactionId = ?</property>
               startId="Package\Re-Insert Transaction (Action 2)\Conditional Split.Outputs[AccountNoInValid]" />
             <path
               refId="Package\Re-Insert Transaction (Action 2).Paths[Lookup Match Output]"
-              endId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]"
+              endId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Inputs[OLE DB Command Input]"
               name="Lookup Match Output"
               startId="Package\Re-Insert Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Match Output]" />
             <path
@@ -2972,7 +2972,7 @@ WHERE TransactionId = ?</property>
               refId="Package\Re-Insert Transaction (Action 2).Paths[OLE DB Command Output]"
               endId="Package\Re-Insert Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input]"
               name="OLE DB Command Output"
-              startId="Package\Re-Insert Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Output]" />
+              startId="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction.Outputs[OLE DB Command Output]" />
             <path
               refId="Package\Re-Insert Transaction (Action 2).Paths[OLE DB Source Output]"
               endId="Package\Re-Insert Transaction (Action 2)\Conditional Split.Inputs[Conditional Split Input]"
@@ -3754,208 +3754,6 @@ where [refTable].[CurrencyCode] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Update Transaction (Action 2)\OLE DB Command"
-              componentClassID="Microsoft.OLEDBCommand"
-              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
-              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
-              name="OLE DB Command"
-              usesDispositions="true"
-              version="2">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  expressionType="Notify"
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[TD_Transactions]
-SET 
-    AccountNo = ?,
-    Amount = ?,
-    CurrencyCode = ?,
-    TransactionDate = ?,
-    Status = ?,
-    ModifiedDate = GETDATE()
-WHERE TransactionId = ?</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Update Transaction (Action 2)\OLE DB Command.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[TransactionDB]"
-                  connectionManagerRefId="Package.ConnectionManagers[TransactionDB]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]"
-                  errorOrTruncationOperation="Command Execution"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Command Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[AccountNo]"
-                      cachedDataType="wstr"
-                      cachedLength="30"
-                      cachedName="AccountNo"
-                      externalMetadataColumnId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNo]" />
-                    <inputColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[Amount]"
-                      cachedDataType="numeric"
-                      cachedName="Amount"
-                      cachedPrecision="18"
-                      cachedScale="2"
-                      externalMetadataColumnId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]" />
-                    <inputColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[CurrencyCode]"
-                      cachedDataType="wstr"
-                      cachedLength="3"
-                      cachedName="CurrencyCode"
-                      externalMetadataColumnId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
-                    <inputColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[TransactionDate]"
-                      cachedDataType="dbTimeStamp2"
-                      cachedName="TransactionDate"
-                      cachedScale="7"
-                      externalMetadataColumnId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionDate]" />
-                    <inputColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[Status]"
-                      cachedDataType="wstr"
-                      cachedLength="10"
-                      cachedName="Status"
-                      externalMetadataColumnId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]" />
-                    <inputColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].Columns[TransactionId]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="TransactionId"
-                      externalMetadataColumnId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionId]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
-                      dataType="wstr"
-                      length="30"
-                      name="Param_0">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
-                      dataType="numeric"
-                      name="Param_1"
-                      precision="18"
-                      scale="2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">81</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
-                      dataType="wstr"
-                      length="3"
-                      name="Param_2">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
-                      dataType="dbTimeStamp2"
-                      name="Param_3"
-                      scale="7">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
-                      dataType="wstr"
-                      length="10"
-                      name="Param_4">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                    <externalMetadataColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
-                      dataType="wstr"
-                      length="50"
-                      name="Param_5">
-                      <properties>
-                        <property
-                          dataType="System.Int32"
-                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
-                          name="DBParamInfoFlags">65</property>
-                      </properties>
-                    </externalMetadataColumn>
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Update Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Output]"
-                  exclusionGroup="1"
-                  name="OLE DB Command Output"
-                  synchronousInputId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]">
-                  <externalMetadataColumns />
-                </output>
-                <output
-                  refId="Package\Update Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Command Error Output"
-                  synchronousInputId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Update Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Update Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Update Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
               refId="Package\Update Transaction (Action 2)\OLE DB Command 1"
               componentClassID="Microsoft.OLEDBCommand"
               contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
@@ -4674,6 +4472,310 @@ WHERE TransactionId = ?</property>
                 </output>
               </outputs>
             </component>
+            <component
+              refId="Package\Update Transaction (Action 2)\Update Temp data"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update Temp data"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE TM_Transactions
+SET 
+IsTransfer =  1,
+Remark = NULL,
+ModifiedDate = GETDATE()
+WHERE TransactionId = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Update Transaction (Action 2)\Update Temp data.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Temp_TransactionDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[Temp_TransactionDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Update Transaction (Action 2)\Update Temp data.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Temp data.Inputs[OLE DB Command Input].Columns[TransactionId]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TransactionId"
+                      externalMetadataColumnId="Package\Update Transaction (Action 2)\Update Temp data.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Update Transaction (Action 2)\Update Temp data.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="100"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Update Temp data.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Update Temp data.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Update Temp data.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Update Temp data.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Temp data.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Update Transaction (Action 2)\Update Temp data.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Temp data.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Update Transaction (Action 2)\Update Temp data.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Update Transaction (Action 2)\Update Transaction"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="Update Transaction"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">UPDATE [dbo].[TD_Transactions]
+SET 
+    AccountNo = ?,
+    Amount = ?,
+    CurrencyCode = ?,
+    TransactionDate = ?,
+    Status = ?,
+    ModifiedDate = GETDATE()
+WHERE TransactionId = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Update Transaction (Action 2)\Update Transaction.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[TransactionDB]"
+                  connectionManagerRefId="Package.ConnectionManagers[TransactionDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].Columns[AccountNo]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="AccountNo"
+                      externalMetadataColumnId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[AccountNo]" />
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].Columns[Amount]"
+                      cachedDataType="numeric"
+                      cachedName="Amount"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Amount]" />
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].Columns[CurrencyCode]"
+                      cachedDataType="wstr"
+                      cachedLength="3"
+                      cachedName="CurrencyCode"
+                      externalMetadataColumnId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].Columns[TransactionDate]"
+                      cachedDataType="dbTimeStamp2"
+                      cachedName="TransactionDate"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionDate]" />
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].Columns[Status]"
+                      cachedDataType="wstr"
+                      cachedLength="10"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[Status]" />
+                    <inputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].Columns[TransactionId]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="TransactionId"
+                      externalMetadataColumnId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      lineageId="Package\Update Transaction (Action 2)\OLE DB Source.Outputs[OLE DB Source Output].Columns[TransactionId]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="30"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      dataType="numeric"
+                      name="Param_1"
+                      precision="18"
+                      scale="2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">81</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="3"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_3]"
+                      dataType="dbTimeStamp2"
+                      name="Param_3"
+                      scale="7">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_4]"
+                      dataType="wstr"
+                      length="10"
+                      name="Param_4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input].ExternalColumns[Param_5]"
+                      dataType="wstr"
+                      length="50"
+                      name="Param_5">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Update Transaction.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Update Transaction (Action 2)\Update Transaction.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Update Transaction (Action 2)\Update Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Update Transaction (Action 2)\Update Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Update Transaction (Action 2)\Update Transaction.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
           </components>
           <paths>
             <path
@@ -4687,8 +4789,13 @@ WHERE TransactionId = ?</property>
               name="Lookup Match Output"
               startId="Package\Update Transaction (Action 2)\Lookup Currency Code.Outputs[Lookup Match Output]" />
             <path
+              refId="Package\Update Transaction (Action 2).Paths[Lookup Match Output1]"
+              endId="Package\Update Transaction (Action 2)\Update Temp data.Inputs[OLE DB Command Input]"
+              name="Lookup Match Output"
+              startId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup Match Output]" />
+            <path
               refId="Package\Update Transaction (Action 2).Paths[Lookup No Match Output]"
-              endId="Package\Update Transaction (Action 2)\OLE DB Command.Inputs[OLE DB Command Input]"
+              endId="Package\Update Transaction (Action 2)\Update Transaction.Inputs[OLE DB Command Input]"
               name="Lookup No Match Output"
               startId="Package\Update Transaction (Action 2)\Compare with main DB.Outputs[Lookup No Match Output]" />
             <path
@@ -4700,7 +4807,7 @@ WHERE TransactionId = ?</property>
               refId="Package\Update Transaction (Action 2).Paths[OLE DB Command Output]"
               endId="Package\Update Transaction (Action 2)\Update Remark.Inputs[OLE DB Command Input]"
               name="OLE DB Command Output"
-              startId="Package\Update Transaction (Action 2)\OLE DB Command.Outputs[OLE DB Command Output]" />
+              startId="Package\Update Transaction (Action 2)\Update Transaction.Outputs[OLE DB Command Output]" />
             <path
               refId="Package\Update Transaction (Action 2).Paths[OLE DB Source Output]"
               endId="Package\Update Transaction (Action 2)\Conditional Split.Inputs[Conditional Split Input]"
@@ -4813,14 +4920,14 @@ WHERE TransactionId = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <GroupLayout
-          Text="Transfer Transaction"
+          Text="Transfet Transaction Date"
           ParentId="Package"
           HeaderHeight="43"
           IsExpanded="True"
           PanelSize="236,420.8"
           Size="236,464"
-          Id="8733d295-343c-4067-8fd0-2577dce7b268"
-          TopLeft="637.833298183151,96.4999993671974">
+          Id="7b15bd05-30a9-437c-a6b3-28efd872bb07"
+          TopLeft="637.6,47">
           <GroupLayout.ChildrenIds>
             <s:String>Package\Insert Transaction (Action 1)</s:String>
             <s:String>Package\Re-Insert Transaction (Action 2)</s:String>
@@ -4854,13 +4961,13 @@ WHERE TransactionId = ?</property>
           Id="Package\Insert Transaction (Action 1)\Transaction Id Invalid"
           TopLeft="439.166681794655,229.499999864896" />
         <NodeLayout
-          Size="167.2,41.6"
-          Id="Package\Insert Transaction (Action 1)\OLE DB Command"
+          Size="161.6,41.6"
+          Id="Package\Insert Transaction (Action 1)\Insert Transaction"
           TopLeft="250.000019304453,349.299995868802" />
         <NodeLayout
           Size="161.6,41.6"
           Id="Package\Insert Transaction (Action 1)\Update IsTransfer"
-          TopLeft="248.333356901174,448.96665987942" />
+          TopLeft="253.333356826668,448.96665987942" />
         <NodeLayout
           Size="152,41.6"
           Id="Package\Insert Transaction (Action 1)\OLE DB Source"
@@ -4953,7 +5060,7 @@ WHERE TransactionId = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Insert Transaction (Action 1).Paths[OLE DB Command Output]"
-          TopLeft="331.366688102813,390.899995868802">
+          TopLeft="332.46668806556,390.899995868802">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5051,37 +5158,37 @@ WHERE TransactionId = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Insert Transaction (Action 1).Paths[Lookup Match Output]"
-          TopLeft="225.733358614807,268.566663187477">
+          TopLeft="255.200025281474,268.566663187477">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="107.866660689645,80.733332681325"
+              EndConnector="75.5999940229787,80.733332681325"
               Start="0,0"
-              End="107.866660689645,73.233332681325">
+              End="75.5999940229787,73.233332681325">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.3666663406625" />
+                    End="0,28.7091270605883" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,36.3666663406625"
-                    Point2="0,40.3666663406625"
-                    Point3="4,40.3666663406625" />
+                    Point1="0,28.7091270605883"
+                    Point2="0,32.7091270605883"
+                    Point3="4,32.7091270605883" />
                   <mssgle:LineSegment
-                    End="103.866660689645,40.3666663406625" />
+                    End="71.5999940229787,32.7091270605883" />
                   <mssgle:CubicBezierSegment
-                    Point1="103.866660689645,40.3666663406625"
-                    Point2="107.866660689645,40.3666663406625"
-                    Point3="107.866660689645,44.3666663406625" />
+                    Point1="71.5999940229787,32.7091270605883"
+                    Point2="75.5999940229787,32.7091270605883"
+                    Point3="75.5999940229787,36.7091270605883" />
                   <mssgle:LineSegment
-                    End="107.866660689645,73.233332681325" />
+                    End="75.5999940229787,73.233332681325" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="5.7419436260727,45.3666663406625,96.3827734375,11.609375"
+              BoundingBox="-10.3913897072607,37.7091270605883,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5128,14 +5235,14 @@ WHERE TransactionId = ?</property>
           IsExpanded="True"
           PanelSize="910.4,545.6"
           Size="910.4,588.8"
-          Id="ee18b76a-b223-4373-bd14-418506754c9b"
-          TopLeft="354.33330078506,9.6666666045785">
+          Id="6a12128e-7c83-4f83-83b8-ca59c625d13c"
+          TopLeft="354.4,5.5">
           <GroupLayout.ChildrenIds>
             <s:String>Package\Insert Transaction (Action 1)\Conditional Split</s:String>
             <s:String>Package\Insert Transaction (Action 1)\Currency Code Invalid</s:String>
             <s:String>Package\Insert Transaction (Action 1)\Status Invalid</s:String>
             <s:String>Package\Insert Transaction (Action 1)\Transaction Id Invalid</s:String>
-            <s:String>Package\Insert Transaction (Action 1)\OLE DB Command</s:String>
+            <s:String>Package\Insert Transaction (Action 1)\Insert Transaction</s:String>
             <s:String>Package\Insert Transaction (Action 1)\Update IsTransfer</s:String>
             <s:String>Package\Insert Transaction (Action 1)\OLE DB Source</s:String>
             <s:String>Package\Insert Transaction (Action 1)\Account No Invalid</s:String>
@@ -5188,8 +5295,8 @@ WHERE TransactionId = ?</property>
           Id="Package\Re-Insert Transaction (Action 2)\Currency Code Invalid"
           TopLeft="5.5,358.233330673841" />
         <NodeLayout
-          Size="167.2,41.6"
-          Id="Package\Re-Insert Transaction (Action 2)\OLE DB Command"
+          Size="178.4,41.6"
+          Id="Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction"
           TopLeft="262.833328770267,358.099996316234" />
         <NodeLayout
           Size="140.8,41.6"
@@ -5299,7 +5406,7 @@ WHERE TransactionId = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Re-Insert Transaction (Action 2).Paths[OLE DB Command Output]"
-          TopLeft="349.466660865976,399.699996316234">
+          TopLeft="352.266660865976,399.699996316234">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5437,9 +5544,9 @@ WHERE TransactionId = ?</property>
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="95.8999976365102,97.7999977988001"
+              EndConnector="101.49999763651,97.7999977988001"
               Start="0,0"
-              End="95.8999976365102,90.2999977988001">
+              End="101.49999763651,90.2999977988001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
@@ -5450,20 +5557,20 @@ WHERE TransactionId = ?</property>
                     Point2="0,39.6236900953079"
                     Point3="4,39.6236900953079" />
                   <mssgle:LineSegment
-                    End="91.8999976365102,39.6236900953079" />
+                    End="97.4999976365103,39.6236900953079" />
                   <mssgle:CubicBezierSegment
-                    Point1="91.8999976365102,39.6236900953079"
-                    Point2="95.8999976365102,39.6236900953079"
-                    Point3="95.8999976365102,43.6236900953079" />
+                    Point1="97.4999976365103,39.6236900953079"
+                    Point2="101.49999763651,39.6236900953079"
+                    Point3="101.49999763651,43.6236900953079" />
                   <mssgle:LineSegment
-                    End="95.8999976365102,90.2999977988001" />
+                    End="101.49999763651,90.2999977988001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-0.241387900494907,44.6236900953079,96.3827734375,11.609375"
+              BoundingBox="2.55861209950513,44.6236900953079,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -5474,14 +5581,14 @@ WHERE TransactionId = ?</property>
           IsExpanded="True"
           PanelSize="982.4,536.8"
           Size="982.4,580"
-          Id="1ba3e404-5042-4005-b090-fbb3d51c6f30"
-          TopLeft="327.166643960609,21.9666665521595">
+          Id="61155a49-29ba-4b4f-8195-92e963937250"
+          TopLeft="327.2,5.5">
           <GroupLayout.ChildrenIds>
             <s:String>Package\Re-Insert Transaction (Action 2)\OLE DB Source</s:String>
             <s:String>Package\Re-Insert Transaction (Action 2)\Conditional Split</s:String>
             <s:String>Package\Re-Insert Transaction (Action 2)\Transaction Id Invalid</s:String>
             <s:String>Package\Re-Insert Transaction (Action 2)\Currency Code Invalid</s:String>
-            <s:String>Package\Re-Insert Transaction (Action 2)\OLE DB Command</s:String>
+            <s:String>Package\Re-Insert Transaction (Action 2)\Re-Insert Transaction</s:String>
             <s:String>Package\Re-Insert Transaction (Action 2)\Status Invalid</s:String>
             <s:String>Package\Re-Insert Transaction (Action 2)\Update Remark</s:String>
             <s:String>Package\Re-Insert Transaction (Action 2)\Account No Invalid</s:String>
@@ -5513,9 +5620,9 @@ WHERE TransactionId = ?</property>
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:s="clr-namespace:System;assembly=mscorlib">
         <NodeLayout
-          Size="167.2,41.6"
-          Id="Package\Update Transaction (Action 2)\OLE DB Command"
-          TopLeft="208.000004234414,498.360598709523" />
+          Size="168.8,41.6"
+          Id="Package\Update Transaction (Action 2)\Update Transaction"
+          TopLeft="213.000004159908,495.860598746776" />
         <NodeLayout
           Size="176,41.6"
           Id="Package\Update Transaction (Action 2)\Status Invalid"
@@ -5531,11 +5638,11 @@ WHERE TransactionId = ?</property>
         <NodeLayout
           Size="152,41.6"
           Id="Package\Update Transaction (Action 2)\OLE DB Source"
-          TopLeft="428.303007743953,5.5" />
+          TopLeft="428.303007743954,5.5" />
         <NodeLayout
           Size="153.6,41.6"
           Id="Package\Update Transaction (Action 2)\Conditional Split"
-          TopLeft="432.060583180627,110.554545103456" />
+          TopLeft="432.060583180628,110.554545103456" />
         <NodeLayout
           Size="180.8,41.6"
           Id="Package\Update Transaction (Action 2)\Currency Code Invalid"
@@ -5578,7 +5685,7 @@ WHERE TransactionId = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Update Transaction (Action 2).Paths[StatusInValid]"
-          TopLeft="545.260583180627,152.154545103456">
+          TopLeft="545.260583180628,152.154545103456">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5676,46 +5783,46 @@ WHERE TransactionId = ?</property>
           TopLeft="204.666669295067,398.60302426626" />
         <EdgeLayout
           Id="Package\Update Transaction (Action 2).Paths[Lookup No Match Output]"
-          TopLeft="294.33333676474,440.20302426626">
+          TopLeft="297.233336727488,440.20302426626">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,58.1575744432632"
+              EndConnector="0,55.6575744805161"
               Start="0,0"
-              End="0,50.6575744432632">
+              End="0,48.1575744805161">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,50.6575744432632" />
+                    End="0,48.1575744805161" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-55.80638671875,19.5240997216316,111.6127734375,11.609375"
+              BoundingBox="-55.80638671875,18.2740997402581,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
           Size="151.2,41.6"
           Id="Package\Update Transaction (Action 2)\Update Remark"
-          TopLeft="208.333335907096,588.012112352936" />
+          TopLeft="215.000002474421,580.512112464694" />
         <EdgeLayout
           Id="Package\Update Transaction (Action 2).Paths[OLE DB Command Output]"
-          TopLeft="287.766670070755,539.960598709523">
+          TopLeft="294.000003317165,537.460598746776">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,48.0515136434126"
+              EndConnector="0,43.0515137179185"
               Start="0,0"
-              End="0,40.5515136434126">
+              End="0,35.5515137179185">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,40.5515136434126" />
+                    End="0,35.5515137179185" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5730,7 +5837,7 @@ WHERE TransactionId = ?</property>
           TopLeft="234.212123400259,273.057571591578" />
         <EdgeLayout
           Id="Package\Update Transaction (Action 2).Paths[Success]"
-          TopLeft="494.300583180627,152.154545103456">
+          TopLeft="494.300583180628,152.154545103456">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
@@ -5824,17 +5931,57 @@ WHERE TransactionId = ?</property>
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="151.2,41.6"
+          Id="Package\Update Transaction (Action 2)\Update Temp data"
+          TopLeft="17.6333270624282,451.199993791183" />
+        <EdgeLayout
+          Id="Package\Update Transaction (Action 2).Paths[Lookup Match Output1]"
+          TopLeft="204.666669295067,419.40302426626">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-35.8333422326387,52.5969695249233"
+              Start="0,0"
+              End="-28.3333422326387,52.5969695249233">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-13.9166711163194,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.9166711163194,0"
+                    Point2="-17.9166711163194,0"
+                    Point3="-17.9166711163194,4" />
+                  <mssgle:LineSegment
+                    End="-17.9166711163194,48.5969695249233" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-17.9166711163194,48.5969695249233"
+                    Point2="-17.9166711163194,52.5969695249233"
+                    Point3="-21.9166711163194,52.5969695249233" />
+                  <mssgle:LineSegment
+                    End="-28.3333422326387,52.5969695249233" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-66.1080578350694,-17.609375,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
         <GroupLayout
           Text="Update Transaction"
           ParentId="Package\Update Transaction (Action 2)"
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="1080,684.8"
-          Size="1080,728"
-          Id="4428ba84-2391-4b9a-9aa1-c087721a7cd5"
-          TopLeft="403.242412555473,5.5">
+          PanelSize="1080,692.8"
+          Size="1080,736"
+          Id="f7af9da9-9405-4831-9391-62026528f054"
+          TopLeft="403.2,5.5">
           <GroupLayout.ChildrenIds>
-            <s:String>Package\Update Transaction (Action 2)\OLE DB Command</s:String>
+            <s:String>Package\Update Transaction (Action 2)\Update Transaction</s:String>
             <s:String>Package\Update Transaction (Action 2)\Status Invalid</s:String>
             <s:String>Package\Update Transaction (Action 2)\OLE DB Command 1</s:String>
             <s:String>Package\Update Transaction (Action 2)\Transaction Id Invalid</s:String>
@@ -5853,6 +6000,8 @@ WHERE TransactionId = ?</property>
             <s:String>Package\Update Transaction (Action 2).Paths[Success]</s:String>
             <s:String>Package\Update Transaction (Action 2).Paths[Lookup No Match Output1]</s:String>
             <s:String>Package\Update Transaction (Action 2).Paths[Lookup Match Output]</s:String>
+            <s:String>Package\Update Transaction (Action 2)\Update Temp data</s:String>
+            <s:String>Package\Update Transaction (Action 2).Paths[Lookup Match Output1]</s:String>
           </GroupLayout.ChildrenIds>
         </GroupLayout>
       </GraphLayout>
