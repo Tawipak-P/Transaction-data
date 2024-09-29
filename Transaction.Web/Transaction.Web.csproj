@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\uploads\xml\" />
+    <Folder Include="wwwroot\uploads\tempXmlFile\" />
   </ItemGroup>
 
 </Project>
