@@ -15,7 +15,7 @@ using Transaction.Infrastructor.Repositories;
 using Transaction.Infrastructor.Repositories.Interfaces;
 using Xunit;
 
-namespace TransactionData.Test
+namespace Transaction.Test
 {
     public class TempTransactionRepositoryTest
     {
