@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transaction.Infrastructor",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transaction.Core", "Transaction.Core\Transaction.Core.csproj", "{D6CFC18C-C3F7-4849-9734-AD392E0DD1B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionData.Api", "TransactionData.Api\TransactionData.Api.csproj", "{CFC7D9A9-08A4-44A3-8E70-F70B3754D193}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Transaction.Api", "TransactionData.Api\Transaction.Api.csproj", "{CFC7D9A9-08A4-44A3-8E70-F70B3754D193}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xUnitTest", "xUnitTest", "{C33DC6D4-D15E-43DA-9014-951B0BFC9BB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionData.Test", "TransactionData.Test\TransactionData.Test.csproj", "{121222D2-539F-41D7-8145-53B3FBC865AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransactionData.Test", "TransactionData.Test\TransactionData.Test.csproj", "{121222D2-539F-41D7-8145-53B3FBC865AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
