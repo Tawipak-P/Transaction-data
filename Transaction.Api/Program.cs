@@ -5,15 +5,19 @@ using Transaction.Infrastructor.Repositories.Interfaces;
 using Transaction.Infrastructor.Repositories;
 using Transaction.Infrastructor;
 using Serilog;
+using Transaction.Api.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
 builder.Services.AddDbContext<TransactionDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("TransactionDb"));
 });
 
+//builder.Services.AddHostedService<DatabaseMigrationExtensions>();
 
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
