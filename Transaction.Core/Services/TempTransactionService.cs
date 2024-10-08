@@ -24,7 +24,7 @@ namespace Transaction.Core.Services
 
 
 
-        public async Task<ResponseModel> UploadTransactionDataFromCSVAsync(FileUploadDTO file)
+        public async Task<ResponseModel> UploadTransactionDataFromCSVAsync(FileUploadModel file)
         {
             ResponseModel response = new ResponseModel();
             try
@@ -44,7 +44,7 @@ namespace Transaction.Core.Services
         }
 
 
-        public async Task<ResponseModel> UploadTransactionDataFromXMLAsync(FileUploadDTO file)
+        public async Task<ResponseModel> UploadTransactionDataFromXMLAsync(FileUploadModel file)
         {
             ResponseModel response = new ResponseModel();
             try
@@ -108,9 +108,9 @@ namespace Transaction.Core.Services
                 //clear file
                 if (!String.IsNullOrEmpty(xDocument.ToString()))
                 {
-                    if (System.IO.File.Exists(filePath))
+                    if (File.Exists(filePath))
                     {
-                        System.IO.File.Delete(filePath);
+                        File.Delete(filePath);
                     }
                 }
                 return xDocument;

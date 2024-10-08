@@ -66,3 +66,17 @@ input, button, a[type="button"] {
 .btn-success:hover {
     background-color: #004F6B;
 }
+
+.bg-dark {
+    background-color: #00647C !important;
+}
+
+
+nav {
+    padding: inherit;
+    transition: 0.5s;
+}
+.fixed-top {
+    padding: 5px; 
+    transition: 0.5s;
+}

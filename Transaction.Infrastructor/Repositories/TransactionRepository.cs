@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
 using Transaction.Infrastructor.StoreProcedures;
+using Transaction.Infrastructor.Entities;
 
 namespace Transaction.Infrastructor.Repositories
 {
@@ -13,6 +14,34 @@ namespace Transaction.Infrastructor.Repositories
         public TransactionRepository(TransactionDbContext dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public async Task<List<TD_CurrencyCode>> GetAllCurrencyCodeAsync()
+        {
+            var response = new List<TD_CurrencyCode>();
+            try
+            {
+                response = await _dbContext.TD_CurrencyCodes.ToListAsync();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException != null ? ex.InnerException : ex;
+            }
+        }
+
+        public async Task<List<TD_Status>> GetAllStatusAsync()
+        {
+            var response = new List<TD_Status>();
+            try
+            {
+                response = await _dbContext.TD_Statuses.ToListAsync();
+                return response;
+            }
+            catch (Exception ex)
+            {
+                throw ex.InnerException != null ? ex.InnerException : ex;
+            }
         }
         #endregion
 

@@ -1,4 +1,4 @@
-﻿namespace Transaction.Core.DTO
+﻿namespace Transaction.Api.DTO
 {
     public class SearchCriteria
     {

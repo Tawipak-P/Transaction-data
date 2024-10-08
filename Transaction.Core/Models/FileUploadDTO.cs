@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Transaction.Core.DTO
+namespace Transaction.Core.Models
 {
-    public class FileUploadDTO
+    public class FileUploadModel
     {
         public IFormFile TransactionFile { get; set; }
         public string FileName { get; set; }

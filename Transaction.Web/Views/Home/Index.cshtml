@@ -1,8 +1,99 @@
-﻿@{
+﻿@model SearchCriteria;
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+
+<div class="container">
+    <form class="mt-5" asp-controller="Home" asp-action="Index" method="post">
+
+        <div class="row">
+            <div class="col-lg-3 ">
+                <label asp-for="CurrencyCode">Currency Code </label>
+                <select class="form-select rounded-0 mt-2" asp-items="@ViewBag.CurrencyCodes" asp-for="CurrencyCode">
+                    <option class="text-center" value="">-- Please Currency Code --</option>
+                </select>
+            </div>
+
+            <div class="col-lg-3 offset-lg-2">
+                <label asp-for="Status">Status </label>
+                <select class="form-select rounded-0 mt-2" asp-items="@ViewBag.Statuses" asp-for="Status">
+                    <option class="text-center" value="">-- Please Status --</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-lg-3">
+                <label asp-for="DateFrom">Date From </label>
+                <input type="date" class="form-control mt-2" asp-for="DateFrom" />
+            </div>
+
+            <div class="col-lg-3 offset-lg-2">
+                <label asp-for="DateTo">Date To </label>
+                <input type="date" class="form-control mt-2" asp-for="DateTo" />
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-lg-3">
+            </div>
+            <div class="col-lg-3 offset-lg-2 text-end">
+                <button type="reset" class="btn btn-secondary">Clear</button>
+                <button type="submit" class="btn btn-success">Search</button>
+            </div>
+        </div>
+    </form>
+
+    <h1 class="mt-5">Transaction Data</h1>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Transaction Id</th>
+                <th>Payment</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tboby>
+            @if (ViewBag.Transactions != null)
+            {
+                @foreach (var item in ViewBag.Transactions as List<TransactionModel>)
+                {
+                    <tr id="@item.Id">
+                        <td>@item.Id</td>
+                        <td>@item.Payment</td>
+                        <td>@item.Status</td>
+                    </tr>
+                }
+            }
+            
+        </tboby>
+    </table>
 </div>
+
+<style>
+    form{
+        border: 1px solid;
+        padding: 50px 50px 50px 50px;
+
+    }
+
+    .search-title {
+        width: 25%;
+        padding: 10px 0 10px 0px;
+        font-size: 20px;
+        background: linear-gradient(90deg, rgba(0,100,124,1) 0%, rgba(161,187,193,1) 100%);
+        color: #FFF;
+    }
+
+    .form-select, .form-control {
+       padding: 5px;
+    }
+
+    /* select > option {
+        font-size: 15px;
+    } */
+</style>

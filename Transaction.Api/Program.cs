@@ -1,11 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Transaction.Core.Services.Interfaces;
 using Transaction.Core.Services;
-using Transaction.Infrastructor.Repositories.Interfaces;
-using Transaction.Infrastructor.Repositories;
 using Transaction.Infrastructor;
 using Serilog;
-using Transaction.Api.Extensions;
+using Transaction.Infrastructor.Repositories;
+using Transaction.Infrastructor.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,11 +15,21 @@ builder.Services.AddDbContext<TransactionDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("TransactionDb"));
 });
+builder.Services.AddDbContext<TempTransactionDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Temp_TransactionDb"));
+});
 
 //builder.Services.AddHostedService<DatabaseMigrationExtensions>();
 
-builder.Services.AddScoped<ITransactionService, TransactionService>();
+
+
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ITempTransactionRepository, TempTransactionRepository>();
+
+builder.Services.AddScoped<ITransactionService, TransactionService>();
+builder.Services.AddScoped<ITempTransactionService, TempTransactionService>();
+
 
 
 //Setup Serilog config
@@ -40,6 +49,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseStaticFiles();
 
 app.UseAuthorization();
 

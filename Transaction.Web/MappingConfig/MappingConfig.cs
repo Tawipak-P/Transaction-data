@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Transaction.Core.DTO;
+using Transaction.Web.DTO;
 using Transaction.Web.Models;
 
 namespace Transaction.Web.MappingConfig

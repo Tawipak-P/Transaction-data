@@ -1,10 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.Data;
-using System.Xml.Linq;
-using Transaction.Core.DTO;
-using Transaction.Core.Models;
+﻿using Transaction.Web.Models;
+using Transaction.Web.DTO;
 
-namespace Transaction.Core.Services.Interfaces
+namespace Transaction.Web.Services.Interfaces
 {
     public interface ITempTransactionService
     {

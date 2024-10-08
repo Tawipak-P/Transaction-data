@@ -2,10 +2,10 @@ using Transaction.Infrastructor;
 using Microsoft.EntityFrameworkCore;
 using Transaction.Infrastructor.Repositories.Interfaces;
 using Transaction.Infrastructor.Repositories;
-using Transaction.Core.Services.Interfaces;
-using Transaction.Core.Services;
 using Serilog;
 using Transaction.Web.MappingConfig;
+using Transaction.Web.Services.Interfaces;
+using Transaction.Web.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,8 +20,20 @@ builder.Services.AddDbContext<TempTransactionDbContext>(options =>
 });
 
 
-builder.Services.AddScoped<ITempTransactionRepository, TempTransactionRepository>();
+builder.Services.AddHttpClient<IBaseService, BaseService>();
+builder.Services.AddHttpClient<ITransactionService, TransactionService>();
+builder.Services.AddHttpClient<ITempTransactionService, TempTransactionService>();
+
+
+//builder.Services.AddScoped<ITempTransactionRepository, TempTransactionRepository>();
+//builder.Services.AddScoped<ITempTransactionService, TempTransactionService>();
+
+
+builder.Services.AddScoped<IBaseService, BaseService>();
+builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ITempTransactionService, TempTransactionService>();
+
+
 
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 

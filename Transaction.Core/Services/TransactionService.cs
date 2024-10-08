@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Transaction.Core.Models;
 using Transaction.Core.Services.Interfaces;
 using Transaction.Infrastructor.Repositories.Interfaces;
-using TransactionData.Core.DTO;
+using Transaction.Core.DTO;
 
 namespace Transaction.Core.Services
 {
@@ -18,9 +18,45 @@ namespace Transaction.Core.Services
             _logger = logger;
         }
 
+        public async Task<ResponseModel> GetAllCurrencyCodeAsync()
+        {
+            var response = new ResponseModel();
+            try
+            {
+
+                var results = await _transactionRepository.GetAllCurrencyCodeAsync();
+                response.IsSuccess = true;
+                response.Result = results;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger?.LogError(ex.ToString());
+                throw ex.InnerException != null ? ex.InnerException : ex;
+            }
+        }
+
+        public async Task<ResponseModel> GetAllStatusAsync()
+        {
+            var response = new ResponseModel();
+            try
+            {
+
+                var results = await _transactionRepository.GetAllStatusAsync();
+                response.IsSuccess = true;
+                response.Result = results;
+                return response;
+            }
+            catch (Exception ex)
+            {
+                _logger?.LogError(ex.ToString());
+                throw ex.InnerException != null ? ex.InnerException : ex;
+            }
+        }
+
         public async Task<ResponseModel> SearchTransactionDataAsync(SearchCriteria searchCriteria)
         {
-            ResponseModel response = new ResponseModel();
+            var response = new ResponseModel();
             try
             {
 

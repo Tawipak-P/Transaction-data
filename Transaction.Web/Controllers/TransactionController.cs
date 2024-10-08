@@ -1,21 +1,22 @@
 ﻿using Transaction.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using Transaction.Core.Services.Interfaces;
+using Transaction.Web.Services.Interfaces;
 using AutoMapper;
 using Serilog;
-using Transaction.Core.Models;
-using Transaction.Core.DTO;
+using Transaction.Web.DTO;
 
 namespace Transaction.Web.Controllers
 {
     public class TransactionController : Controller
     {
         private readonly ITempTransactionService _tempTransactionService;
+        private readonly ITransactionService _transactionService;
         private readonly IMapper _mapper;
 
-        public TransactionController(ITempTransactionService tempTransactionService, IMapper mapper)
+        public TransactionController(ITempTransactionService tempTransactionService, ITransactionService transactionService, IMapper mapper)
         {
             _tempTransactionService = tempTransactionService;
+            _transactionService = transactionService;
             _mapper = mapper;
         }
 
@@ -43,10 +44,10 @@ namespace Transaction.Web.Controllers
                 switch (Path.GetExtension(fileUploadModel.TransactionFile.FileName))
                 {
                     case ".csv":
-                        response = await _tempTransactionService.UploadTransactionDataFromCSVAsync(file);
+                        response = await _tempTransactionService.UploadTransactionDataFromCSVAsync(fileUploadModel);
                         break;
                     default:
-                        response = await _tempTransactionService.UploadTransactionDataFromXMLAsync(file);
+                        response = await _tempTransactionService.UploadTransactionDataFromXMLAsync(fileUploadModel);
                         break;
                 }
 
@@ -68,6 +69,31 @@ namespace Transaction.Web.Controllers
                 Log.Error(ex.ToString());
                 fileUploadModel.FileName = fileUploadModel.TransactionFile.FileName;
                 return View(fileUploadModel);
+            }
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> GetTransactionData(SearchCriteria searchCriteria)
+        {
+            ResponseModel response = new ResponseModel();
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    Log.Error(ModelState.Values.SelectMany(e => e.Errors).ToArray().ToString());
+                    return BadRequest();
+                }
+                response = await _transactionService.SearchAsync(searchCriteria);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
+                response.ErrorMessages = new List<string> { ex.Message };
+                Log.Error(ex.ToString());
+                return BadRequest(response);
             }
         }
     }
