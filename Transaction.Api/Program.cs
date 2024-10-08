@@ -3,11 +3,8 @@ using Transaction.Core.Services.Interfaces;
 using Transaction.Core.Services;
 using Transaction.Infrastructor;
 using Serilog;
-<<<<<<< HEAD
 using Transaction.Infrastructor.Repositories;
 using Transaction.Infrastructor.Repositories.Interfaces;
-=======
->>>>>>> parent of 69b6746 (Add docker)
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -2,9 +2,9 @@
 {
     public class ApiHelper
     {
-        public readonly static string API_URL = "http://host.docker.internal:8082";
+        //public readonly static string API_URL = "http://host.docker.internal:8082";
 
-        //public readonly static string API_URL = "http://localhost:7002";
+        public readonly static string API_URL = "http://localhost:5262";
 
 
         public readonly static string TransactionApi = API_URL + "/api/transactionApi";
