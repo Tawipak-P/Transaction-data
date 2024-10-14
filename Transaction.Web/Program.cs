@@ -1,7 +1,5 @@
 using Transaction.Infrastructor;
 using Microsoft.EntityFrameworkCore;
-using Transaction.Infrastructor.Repositories.Interfaces;
-using Transaction.Infrastructor.Repositories;
 using Serilog;
 using Transaction.Web.MappingConfig;
 using Transaction.Web.Services.Interfaces;
