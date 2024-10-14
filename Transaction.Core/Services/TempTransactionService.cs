@@ -1,13 +1,11 @@
-﻿using AutoMapper;
-using CsvHelper;
+﻿using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Configuration;
 using System.Data;
-using System.Formats.Asn1;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.Xml.Linq;
-using Transaction.Core.DTO;
 using Transaction.Core.Models;
 using Transaction.Core.Services.Interfaces;
 using Transaction.Infrastructor.Repositories.Interfaces;
@@ -35,6 +33,9 @@ namespace Transaction.Core.Services
                 {
                     response.IsSuccess = false;
                 }
+
+                await StartTransactionPackage();
+
                 return response;
             }
             catch (Exception ex)
@@ -55,6 +56,8 @@ namespace Transaction.Core.Services
                 {
                     response.IsSuccess = false;
                 }
+
+                await StartTransactionPackage();
 
                 return response;
             }
@@ -122,6 +125,32 @@ namespace Transaction.Core.Services
                     File.Delete(filePath);
                 }
 
+                throw ex;
+            }
+        }
+
+        private async Task<ResponseModel> StartTransactionPackage()
+        {
+            ResponseModel response = new ResponseModel();
+            try
+            {
+                var connectionString = "Server=LAPTOP-31TQNV5N; Database=msdb; User Id=sa; Password=p@ssw0rd@dmin123;";
+                using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+                {
+                    await sqlConnection.OpenAsync();
+
+                    using (SqlCommand sqlCommand = new SqlCommand("msdb.dbo.sp_start_job", sqlConnection))
+                    {
+                        sqlCommand.CommandType = CommandType.StoredProcedure;
+                        sqlCommand.Parameters.AddWithValue("@job_name", "Transaction");
+                        await sqlCommand.ExecuteNonQueryAsync();
+                    }
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
+                response.IsSuccess = false;
                 throw ex;
             }
         }
