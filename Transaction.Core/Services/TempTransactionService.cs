@@ -1,13 +1,9 @@
-﻿using AutoMapper;
-using CsvHelper;
+﻿using CsvHelper;
 using CsvHelper.Configuration;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using System.Data;
-using System.Formats.Asn1;
 using System.Globalization;
 using System.Xml.Linq;
-using Transaction.Core.DTO;
 using Transaction.Core.Models;
 using Transaction.Core.Services.Interfaces;
 using Transaction.Infrastructor.Repositories.Interfaces;
@@ -23,14 +19,14 @@ namespace Transaction.Core.Services
         }
 
 
-
-        public async Task<ResponseModel> UploadTransactionDataFromCSVAsync(FileUploadModel file)
+        public async Task<ResponseModel> UploadTransactionWithSqlBlukCopyAsync(FileUploadModel file)
         {
             ResponseModel response = new ResponseModel();
             try
             {
                 var dataTable = ConvertCSVToDataTable(file.TransactionFile);
-                var results = await _tempTransactionRepository.UploadTransactionDataFormCSVAsync(dataTable);
+
+                var results = await _tempTransactionRepository.UploadTransactionWithSqlBlukCopyAsync(dataTable);
                 if (!results)
                 {
                     response.IsSuccess = false;
@@ -42,28 +38,6 @@ namespace Transaction.Core.Services
                 throw ex;
             }
         }
-
-
-        public async Task<ResponseModel> UploadTransactionDataFromXMLAsync(FileUploadModel file)
-        {
-            ResponseModel response = new ResponseModel();
-            try
-            {
-                var xDocument = ConvertXmlToXDocument(file.TransactionFile);
-                var results = await _tempTransactionRepository.UploadTransactionDataFromXMLAsync(xDocument);
-                if (!results)
-                {
-                    response.IsSuccess = false;
-                }
-
-                return response;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
 
 
         private DataTable ConvertCSVToDataTable(IFormFile file)

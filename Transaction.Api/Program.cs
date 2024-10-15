@@ -5,6 +5,7 @@ using Transaction.Infrastructor;
 using Serilog;
 using Transaction.Infrastructor.Repositories;
 using Transaction.Infrastructor.Repositories.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +24,7 @@ builder.Services.AddDbContext<TempTransactionDbContext>(options =>
 
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 builder.Services.AddScoped<ITempTransactionRepository, TempTransactionRepository>();
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddScoped<ITempTransactionService, TempTransactionService>();

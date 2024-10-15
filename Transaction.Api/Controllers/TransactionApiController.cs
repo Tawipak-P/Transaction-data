@@ -25,7 +25,7 @@ namespace Transaction.Api.Controllers
             var response = new ResponseModel();
             try
             {
-                response = await _tempTransactionService.UploadTransactionDataFromCSVAsync(fileUploadModel);
+                response = await _tempTransactionService.UploadTransactionWithSqlBlukCopyAsync(fileUploadModel);
                 if (!response.IsSuccess)
                 {
                     response.IsSuccess = false;
@@ -48,7 +48,7 @@ namespace Transaction.Api.Controllers
             var response = new ResponseModel();
             try
             {
-                response = await _tempTransactionService.UploadTransactionDataFromXMLAsync(fileUploadModel);
+                response = await _tempTransactionService.UploadTransactionWithSqlBlukCopyAsync(fileUploadModel);
                 if (!response.IsSuccess)
                 {
                     response.IsSuccess = false;

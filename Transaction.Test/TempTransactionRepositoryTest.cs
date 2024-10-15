@@ -29,7 +29,7 @@ namespace Transaction.Test
             TempTransactionDbContext dbContext = dbContextMock.Object;
             dbContextMock.CreateDbSetMock(temp => temp.TM_Transactions, tempTransactionInitialData);
 
-            _tempTransactionInitialData = new TempTransactionRepository(dbContext);
+            _tempTransactionInitialData = new TempTransactionRepository(dbContext, null);
             fixture = new Fixture();
         }
 
@@ -40,7 +40,7 @@ namespace Transaction.Test
             var dataTable = CreateTestData();
 
             //Act
-            var response = await _tempTransactionInitialData.UploadTransactionDataFormCSVAsync(dataTable);
+            var response = await _tempTransactionInitialData.UploadTransactionWithSqlBlukCopyAsync(dataTable);
 
             //Assert
             Assert.True(response);
