@@ -40,17 +40,7 @@ namespace Transaction.Web.Controllers
                     return View(fileUploadModel);
                 }
 
-                var file = _mapper.Map<FileUploadDTO>(fileUploadModel);
-                switch (Path.GetExtension(fileUploadModel.TransactionFile.FileName))
-                {
-                    case ".csv":
-                        response = await _tempTransactionService.UploadTransactionDataFromCSVAsync(fileUploadModel);
-                        break;
-                    default:
-                        response = await _tempTransactionService.UploadTransactionDataFromXMLAsync(fileUploadModel);
-                        break;
-                }
-
+                response = await _tempTransactionService.UploadTransactionWithSqlBlukCopyAsync(fileUploadModel);
                 if (!response.IsSuccess)
                 {
                     TempData["error"] = "Unsuccess to upload transaction data";

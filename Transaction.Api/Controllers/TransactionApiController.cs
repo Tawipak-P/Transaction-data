@@ -19,8 +19,8 @@ namespace Transaction.Api.Controllers
             _tempTransactionService = tempTransactionService;
         }
 
-        [HttpPost("upload-transaction-csv")]
-        public async Task<IActionResult> UploadTransactionDataFromCSV(FileUploadModel fileUploadModel)
+        [HttpPost("upload-transaction")]
+        public async Task<IActionResult> UploadTransactionWithSqlBlukCopyAsync(FileUploadModel fileUploadModel)
         {
             var response = new ResponseModel();
             try
@@ -40,30 +40,6 @@ namespace Transaction.Api.Controllers
                 return BadRequest(fileUploadModel);
             }
         }
-
-
-        [HttpPost("upload-transaction-xml")]
-        public async Task<IActionResult> UploadTransactionDataFromXML(FileUploadModel fileUploadModel)
-        {
-            var response = new ResponseModel();
-            try
-            {
-                response = await _tempTransactionService.UploadTransactionWithSqlBlukCopyAsync(fileUploadModel);
-                if (!response.IsSuccess)
-                {
-                    response.IsSuccess = false;
-                }
-
-                return Ok(response);
-            }
-            catch (Exception ex)
-            {
-                response.IsSuccess = false;
-                Log.Error(ex.ToString());
-                return BadRequest(fileUploadModel);
-            }
-        }
-
 
 
         [HttpPost("transaction-data")]

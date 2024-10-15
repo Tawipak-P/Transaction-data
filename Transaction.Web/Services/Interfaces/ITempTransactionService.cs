@@ -5,7 +5,6 @@ namespace Transaction.Web.Services.Interfaces
 {
     public interface ITempTransactionService
     {
-        Task<ResponseModel> UploadTransactionDataFromCSVAsync(FileUploadModel file);
-        Task<ResponseModel> UploadTransactionDataFromXMLAsync(FileUploadModel file);
+        Task<ResponseModel> UploadTransactionWithSqlBlukCopyAsync(FileUploadModel file);
     }
 }

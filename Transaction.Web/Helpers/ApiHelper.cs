@@ -8,8 +8,7 @@
 
 
         public readonly static string TransactionApi = API_URL + "/api/transactionApi";
-        public readonly static string UploadTransactionDataFromCSVApi = TransactionApi + "/upload-transaction-csv";
-        public readonly static string UploadTransactionDataFromXMLApi = TransactionApi + "/upload-transaction-xml";
+        public readonly static string UploadTransactionWithSqlBlukCopyApi = TransactionApi + "/upload-transaction";
 
 
         public readonly static string SearchTransactionDataApi = TransactionApi + "/transaction-data";

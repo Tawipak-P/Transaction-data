@@ -24,7 +24,16 @@ namespace Transaction.Core.Services
             ResponseModel response = new ResponseModel();
             try
             {
-                var dataTable = ConvertCSVToDataTable(file.TransactionFile);
+                var dataTable = new DataTable();
+                switch (Path.GetExtension(file.TransactionFile.FileName))
+                {
+                    case ".csv":
+                        dataTable = ConvertCSVToDataTable(file.TransactionFile);
+                        break;
+                    default:
+                        dataTable = ConvertXmlToDataTable(file.TransactionFile);
+                        break;
+                }
 
                 var results = await _tempTransactionRepository.UploadTransactionWithSqlBlukCopyAsync(dataTable);
                 if (!results)
@@ -45,6 +54,7 @@ namespace Transaction.Core.Services
             var dataTable = new DataTable();
             try
             {
+
                 var config = new CsvConfiguration(CultureInfo.InvariantCulture)
                 {
                     HasHeaderRecord = false,
@@ -66,28 +76,48 @@ namespace Transaction.Core.Services
             }
         }
 
-        private XDocument ConvertXmlToXDocument(IFormFile file)
+        private DataTable ConvertXmlToDataTable(IFormFile file)
         {
             var extension = Path.GetExtension(file.FileName);
             var fileName = file.FileName.Split('.')[0] + '_' + DateTime.Now.Millisecond + extension;
             var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/uploads/tempXmlFile", fileName);
+
+            var dataTable = new DataTable();
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
+
             try
             {
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    file.CopyTo(fileStream);
-                }
-                var xDocument = XDocument.Load(filePath);
+                var xml = File.ReadAllText(filePath);
+                var xDocument = XDocument.Parse(xml);
 
-                //clear file
-                if (!String.IsNullOrEmpty(xDocument.ToString()))
+                dataTable.Columns.Add("TransactionId");
+                dataTable.Columns.Add("AccountNo");
+                dataTable.Columns.Add("Amount");
+                dataTable.Columns.Add("CurrencyCode");
+                dataTable.Columns.Add("TransactionDate");
+                dataTable.Columns.Add("Status");
+
+                foreach (var data in xDocument.Descendants("Transaction"))
                 {
-                    if (File.Exists(filePath))
-                    {
-                        File.Delete(filePath);
-                    }
+                    var transactionId = data.Attribute("id").Value;
+                    var accountNo = data.Element("PaymentDetails").Element("AccountNo").Value;
+                    var amount = data.Element("PaymentDetails").Element("Amount").Value;
+                    var currencyCode = data.Element("PaymentDetails").Element("CurrencyCode").Value;
+                    var transactionDate = data.Element("TransactionDate").Value;
+                    var status = data.Element("Status").Value;
+
+                    dataTable.Rows.Add(transactionId, accountNo, amount, currencyCode, transactionDate, status);
                 }
-                return xDocument;
+                
+                if (File.Exists(filePath))
+                {
+                    File.Delete(filePath);
+                }
+
+                return dataTable;
             }
             catch (Exception ex)
             {

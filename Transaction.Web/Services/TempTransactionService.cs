@@ -16,23 +16,12 @@ namespace Transaction.Web.Services
         }
 
 
-        public async Task<ResponseModel> UploadTransactionDataFromCSVAsync(FileUploadModel file)
+        public async Task<ResponseModel> UploadTransactionWithSqlBlukCopyAsync(FileUploadModel file)
         {
             return await _baseService.SendAsync(new RequestModel
             {
                 Method = HttpMethod.Post,
-                Url = ApiHelper.UploadTransactionDataFromCSVApi,
-                Data = file,
-                ContentType = ContentType.MultipartFormData,
-            });
-        }
-
-        public async Task<ResponseModel> UploadTransactionDataFromXMLAsync(FileUploadModel file)
-        {
-            return await _baseService.SendAsync(new RequestModel
-            {
-                Method = HttpMethod.Post,
-                Url = ApiHelper.UploadTransactionDataFromXMLApi,
+                Url = ApiHelper.UploadTransactionWithSqlBlukCopyApi,
                 Data = file,
                 ContentType = ContentType.MultipartFormData,
             });
